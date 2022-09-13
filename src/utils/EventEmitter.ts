@@ -24,7 +24,7 @@ export default class
     /**
      * On
      */
-    on(_names: any, callback: () => any): any
+    on(_names: string, callback: () => any): any
     {
         const that = this
 
@@ -45,7 +45,7 @@ export default class
         const names = this.resolveNames(_names)
 
         // Each name
-        names.forEach(function(_name: string)
+        names.forEach(function(_name: string): void
         {
             // Resolve name
             const name = that.resolveName(_name)
@@ -68,7 +68,7 @@ export default class
     /**
      * Off
      */
-    off(_names: any): any
+    off(_names: string): any
     {
         const that = this
 

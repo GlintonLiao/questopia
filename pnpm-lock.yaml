@@ -1,8 +1,10 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@types/stats': ^0.16.30
   '@types/three': ^0.144.0
   lil-gui: ^0.17.0
+  stats.js: ^0.17.0
   three: ^0.144.0
   typescript: ^4.6.4
   vite: ^3.1.0
@@ -10,10 +12,12 @@ specifiers:
 
 dependencies:
   lil-gui: 0.17.0
+  stats.js: 0.17.0
   three: 0.144.0
   vite-plugin-glsl: 0.4.0
 
 devDependencies:
+  '@types/stats': 0.16.30
   '@types/three': 0.144.0
   typescript: 4.8.3
   vite: 3.1.0
@@ -36,6 +40,10 @@ packages:
       estree-walker: 2.0.2
       picomatch: 2.3.1
     dev: false
+
+  /@types/stats/0.16.30:
+    resolution: {integrity: sha512-ihuaNKhVjTQ8UNLJu7Kx96ywf0bSBday/K//HHvO9LKha07Ezxdm6HkazOKUIdayp0EmGEIPBQSL7eLxm8rX0w==}
+    dev: true
 
   /@types/three/0.144.0:
     resolution: {integrity: sha512-psvEs6q5rLN50jUYZ3D4pZMfxTbdt3A243blt0my7/NcL6chaCZpHe2csbCtx0SOD9fI/XnF3wnVUAYZGqCSYg==}
@@ -338,6 +346,10 @@ packages:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}
     engines: {node: '>=0.10.0'}
     dev: true
+
+  /stats.js/0.17.0:
+    resolution: {integrity: sha512-hNKz8phvYLPEcRkeG1rsGmV5ChMjKDAWU7/OJJdDErPBNChQXxCo3WZurGpnWc6gZhAzEPFad1aVgyOANH1sMw==}
+    dev: false
 
   /supports-preserve-symlinks-flag/1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}

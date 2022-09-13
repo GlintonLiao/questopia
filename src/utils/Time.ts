@@ -10,6 +10,7 @@ export default class Time extends EventEmitter
     ticker: number = 0
 
     constructor() {
+        
         super()
         
         this.start = Date.now()
