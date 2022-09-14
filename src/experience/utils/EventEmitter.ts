@@ -24,7 +24,7 @@ export default class
     /**
      * On
      */
-    on(_names: string, callback: () => any): any
+    on(_names: string, callback: (_resource?: any, _data?: any) => any): any
     {
         const that = this
 

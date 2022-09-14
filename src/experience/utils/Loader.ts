@@ -1,7 +1,7 @@
-import Experience from "../experience/Experience";
+import Experience from "../Experience";
 import EventEmitter from "./EventEmitter";
 
-export default class Resources extends EventEmitter {
+export default class Loader extends EventEmitter {
 
     experience: Experience
     renderer: any

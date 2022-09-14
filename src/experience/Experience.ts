@@ -1,8 +1,9 @@
 import * as THREE from 'three'
 import GUI from 'lil-gui'
-import Time from '../utils/Time'
-import Sizes from '../utils/Sizes'
-import Stats from '../utils/Stats'
+import Time from './utils/Time'
+import Sizes from './utils/Sizes'
+import Stats from './utils/Stats'
+import { Camera } from 'three'
 
 interface OptionProps {
     targetElement: HTMLDivElement
@@ -24,6 +25,9 @@ export default class Experience
 
     config?: Config
     stats?: Stats
+    debug?: GUI
+
+    scene?: THREE.Scene
 
     constructor(_options?: OptionProps) {
 
@@ -47,7 +51,7 @@ export default class Experience
         this.setConfig()
         this.setDebug()
         this.setStats()
-        this.setSence()
+        this.setScene()
         this.setCamera()
         this.setRenderer()
         this.setResouces()
@@ -77,7 +81,25 @@ export default class Experience
 
     setDebug(): void {
         if (this.config?.debug) {
+            this.debug = new GUI()
+        }
+    }
+
+    setStats(): void {
+        if (this.config?.debug) {
             this.stats = new Stats(true)
         }
+    }
+
+    setScene(): void {
+        this.scene = new THREE.Scene()
+    }
+
+    setCamera(): void {
+        this.camera = new Camera()
+    }
+
+    setRenderer(): void {
+        this.renderer = new this.setRenderer({ })
     }
 }
