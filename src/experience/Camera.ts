@@ -17,7 +17,7 @@ export default class Camera {
 
     instance: THREE.PerspectiveCamera
 
-    constructor(_options: any) {
+    constructor(_options?: any) {
         // options
         this.experience = new Experience()
         this.config = this.experience.config

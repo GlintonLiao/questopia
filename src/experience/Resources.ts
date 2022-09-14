@@ -8,7 +8,7 @@ export default class Resources extends EventEmitter {
     loader: Loader
     groups: any
 
-    constructor(_assets)
+    constructor(_assets: any[])
     {
         super()
 
@@ -54,14 +54,8 @@ export default class Resources extends EventEmitter {
             // Trigger
             this.trigger('groupEnd', [this.groups.current])
 
-            if(this.groups.assets.length > 0)
-            {
-                this.loadNextGroup()
-            }
-            else
-            {
-                this.trigger('end')
-            }
+            if (this.groups.assets.length > 0) this.loadNextGroup()
+            else this.trigger('end')
         })
     }
 

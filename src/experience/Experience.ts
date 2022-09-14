@@ -3,13 +3,17 @@ import GUI from 'lil-gui'
 import Time from './utils/Time'
 import Sizes from './utils/Sizes'
 import Stats from './utils/Stats'
-import { Camera } from 'three'
+import Camera from './Camera'
+import Renderer from './Renderer'
+import Resources from './Resources'
+import Assets from './Assets'
+import World from './World'
 
 interface OptionProps {
     targetElement: HTMLDivElement
 }
 
-interface Config {
+export interface Config {
     debug?: boolean
     pixelRatio?: number
     width?: number
@@ -22,12 +26,17 @@ export default class Experience
     targetElement?: HTMLDivElement
     time?: Time
     sizes?: Sizes
+    camera: Camera
 
     config?: Config
     stats?: Stats
     debug?: GUI
 
     scene?: THREE.Scene
+    renderer: Renderer
+
+    resources: Resources
+    world: World
 
     constructor(_options?: OptionProps) {
 
@@ -54,7 +63,7 @@ export default class Experience
         this.setScene()
         this.setCamera()
         this.setRenderer()
-        this.setResouces()
+        this.setResources()
         this.setWorld()
 
         this.sizes.on('resize', () => {
@@ -100,6 +109,45 @@ export default class Experience
     }
 
     setRenderer(): void {
-        this.renderer = new this.setRenderer({ })
+        this.renderer = new Renderer() // no args
+        this.targetElement.appendChild(this.renderer.instance.domElement)
+    }
+
+    setResources(): void {
+        this.resources = new Resources(Assets)
+    }
+
+    setWorld(): void {
+        this.world = new World()
+    }
+
+    update(): void {
+        if (this.stats) this.stats.update()
+
+        this.camera.update()
+
+        if (this.world) this.world.update()
+        if (this.renderer) this.renderer.update()
+
+        window.requestAnimationFrame(() => {
+            this.update()
+        })
+    }
+
+    resize(): void {
+        // config
+        const boundings = this.targetElement.getBoundingClientRect()
+        this.config.width = boundings.width
+        this.config.height = boundings.height
+        
+        this.config.pixelRatio = Math.min(Math.max(window.devicePixelRatio, 1), 2)
+
+        if (this.camera) this.camera.resize()
+        if (this.renderer) this.renderer.resize()
+        if (this.world) this.world.resize()
+    }
+
+    destory(): void {
+
     }
 }
