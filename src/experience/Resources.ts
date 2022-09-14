@@ -30,7 +30,7 @@ export default class Resources extends EventEmitter {
             let data = _data
 
             // Convert to texture
-            if(_resource.type === 'texture')
+            if (_resource.type === 'texture')
             {
                 if(!(data instanceof THREE.Texture))
                 {
@@ -73,7 +73,7 @@ export default class Resources extends EventEmitter {
         // Groups
         const groups = []
 
-        for(const _group of _groups)
+        for (const _group of _groups)
         {
             groups.push({
                 name: _group.name,
@@ -86,7 +86,7 @@ export default class Resources extends EventEmitter {
         // Result
         const result = {}
 
-        for(const _group of groups)
+        for (const _group of groups)
         {
             result[_group.name] = _group.instancedMeshes
         }
@@ -96,10 +96,10 @@ export default class Resources extends EventEmitter {
 
     destroy()
     {
-        for(const _itemKey in this.items)
+        for (const _itemKey in this.items)
         {
             const item = this.items[_itemKey]
-            if(item instanceof THREE.Texture)
+            if (item instanceof THREE.Texture)
             {
                 item.dispose()
             }

@@ -4,7 +4,6 @@ import Resources from './Resources.js'
 
 export default class World
 {
-
     experience: Experience
     config: Config
     scene: THREE.Scene

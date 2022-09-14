@@ -27,9 +27,13 @@ export default class Sizes extends EventEmitter {
 
         // resize event
         this.resize = this.resize.bind(this)
+        window.addEventListener('resize', this.resize)
+
+        this.resize()
     }
 
     resize(): void {
+
         document.body.appendChild(this.sizeViewport)
         this.viewport.width = this.sizeViewport.offsetWidth
         this.viewport.height = this.sizeViewport.offsetHeight

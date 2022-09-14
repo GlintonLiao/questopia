@@ -62,6 +62,8 @@ export default class
             that.callbacks[ name.namespace ][ name.value ].push(callback)
         })
 
+        console.log(this);
+        
         return this
     }
 

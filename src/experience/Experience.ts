@@ -145,6 +145,7 @@ export default class Experience
         if (this.camera) this.camera.resize()
         if (this.renderer) this.renderer.resize()
         if (this.world) this.world.resize()
+        
     }
 
     destory(): void {
