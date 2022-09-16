@@ -9,6 +9,8 @@ export default class World
     scene: THREE.Scene
     resources: Resources
 
+    room: any = {}
+
     constructor(_options?: any)
     {
         this.experience = new Experience()
@@ -20,7 +22,8 @@ export default class World
         {
             if(_group.name === 'base')
             {
-                this.setDummy()
+                // this.setDummy()
+                this.setRoom()
             }
         })
     }
@@ -34,6 +37,16 @@ export default class World
             new THREE.MeshBasicMaterial({ map: this.resources.items.lennaTexture })
         )
         this.scene.add(cube)        
+    }
+
+    setRoom(): void {
+        this.room = {}
+        this.room.model = this.resources.items.roomModel.scene
+        this.scene.add(this.room.model)
+        
+        const directionalLight = new THREE.DirectionalLight('#ffffff', 7)
+        directionalLight.position.set(10, 5, 10)
+        this.scene.add(directionalLight)
     }
 
     resize()
