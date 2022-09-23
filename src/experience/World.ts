@@ -36,7 +36,7 @@ export default class World
             new THREE.BoxGeometry(1, 1, 1),
             new THREE.MeshBasicMaterial({ map: this.resources.items.lennaTexture })
         )
-        this.scene.add(cube)        
+        this.scene.add(cube)
     }
 
     setRoom(): void {
@@ -45,7 +45,7 @@ export default class World
         this.scene.add(this.room.model)
         
         const directionalLight = new THREE.DirectionalLight('#ffffff', 7)
-        directionalLight.position.set(10, 5, 10)
+        directionalLight.position.set(1, 5, 10)
         this.scene.add(directionalLight)
     }
 
