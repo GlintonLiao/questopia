@@ -8,6 +8,7 @@ import Renderer from './Renderer'
 import Resources from './Resources'
 import Assets from './Assets'
 import World from './World'
+import Navigation from './Navigation'
 
 interface OptionProps {
     targetElement: HTMLDivElement
@@ -36,6 +37,7 @@ export default class Experience
     renderer: Renderer
 
     resources: Resources
+    navigation: Navigation
     world: World
 
     constructor(_options?: OptionProps) {
@@ -65,6 +67,7 @@ export default class Experience
         this.setRenderer()
         this.setResources()
         this.setWorld()
+        this.setNavigation()
 
         this.sizes.on('resize', () => {
             this.resize()
@@ -121,6 +124,10 @@ export default class Experience
         this.world = new World()
     }
 
+    setNavigation(): void {
+        this.navigation = new Navigation()
+    }
+
     update(): void {
         if (this.stats) this.stats.update()
 
@@ -128,6 +135,7 @@ export default class Experience
 
         if (this.world) this.world.update()
         if (this.renderer) this.renderer.update()
+        if (this.navigation) this.navigation.update()
 
         window.requestAnimationFrame(() => {
             this.update()
