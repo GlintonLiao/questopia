@@ -54,9 +54,9 @@ export default class World
             }
         })
         
-        const directionalLight = new THREE.DirectionalLight('#ffffff', 7)
-        directionalLight.position.set(1, 5, 10)
-        this.scene.add(directionalLight)
+        // const directionalLight = new THREE.DirectionalLight('#ffffff', 7)
+        // directionalLight.position.set(1, 5, 10)
+        // this.scene.add(directionalLight)
     }
 
     resize()
