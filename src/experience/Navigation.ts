@@ -28,8 +28,16 @@ export default class Navigation {
         this.view.spherical.value = new THREE.Spherical(5.5, Math.PI * 0.41, Math.PI * 0.15)
         this.view.spherical.smoothed = this.view.spherical.value.clone()
         this.view.spherical.smoothing = 0.005
+        this.view.spherical.limits = {}
+        this.view.spherical.limits.radius = { min: 2, max: 6.5 }
+        this.view.spherical.limits.phi = { min: 0.01, max: Math.PI * 0.5 }
+        this.view.spherical.limits.theta = { min: -Math.PI * 0.5, max: 0 }
 
-        this.view.target = new THREE.Vector3(-0.2, 0.4, 0.25)
+        this.view.target = new THREE.Vector3(-0.4, 0.4, 0.25)
+        this.view.target.limits = {}
+        this.view.target.limits.x = { min: - 4, max: 4 }
+        this.view.target.limits.y = { min: 1, max: 6 }
+        this.view.target.limits.z = { min: - 4, max: 4 }
 
         // const origin = new THREE.Vector3( 0, 0, 0 );
         // const length = 1;
@@ -46,6 +54,10 @@ export default class Navigation {
         this.view.drag.previous.x = 0
         this.view.drag.previous.y = 0
         this.view.drag.sensitivity = 1.2
+
+        this.view.zoom = {}
+        this.view.zoom.sensitivity = 0.01
+        this.view.zoom.delta = 0
 
         // mothods
         this.view.down = (_x: number, _y: number): void => {
@@ -65,7 +77,7 @@ export default class Navigation {
             
         }
 
-        this.view.zoomIn = (_delta: any): void => {
+        this.view.zoomIn = (_delta: number): void => {
             this.view.zoom.delta += _delta
         }
 
@@ -130,9 +142,28 @@ export default class Navigation {
         }
 
         window.addEventListener('touchstart', this.view.onTouchStart)
+
+        /**
+         * Wheel
+         */
+        this.view.onWheel = (_event: WheelEvent): void => {
+            _event.preventDefault()
+
+            const normalized = normalizeWheel(_event)
+            this.view.zoomIn(normalized.pixelY)
+        }
+        
+        window.addEventListener('mousewheel', this.view.onWheel, { passive: false })
+        window.addEventListener('wheel', this.view.onWheel, { passive: false })
     }
 
     update(): void {
+
+        // zoom
+        this.view.spherical.value.radius += this.view.zoom.delta * this.view.zoom.sensitivity
+
+        // Apply limits
+        this.view.spherical.value.radius = Math.min(Math.max(this.view.spherical.value.radius, this.view.spherical.limits.radius.min), this.view.spherical.limits.radius.max)
 
         // drag
         this.view.spherical.value.theta -= this.view.drag.delta.x * this.view.drag.sensitivity / this.config.smallestSide
@@ -140,8 +171,10 @@ export default class Navigation {
 
         this.view.drag.delta.x = 0
         this.view.drag.delta.y = 0
+        this.view.zoom.delta = 0
 
         // smoothing
+        this.view.spherical.smoothed.radius += (this.view.spherical.value.radius - this.view.spherical.smoothed.radius) * this.view.spherical.smoothing * this.time.delta
         this.view.spherical.smoothed.phi += (this.view.spherical.value.phi - this.view.spherical.smoothed.phi) * this.view.spherical.smoothing * this.time.delta
         this.view.spherical.smoothed.theta += (this.view.spherical.value.theta - this.view.spherical.smoothed.theta) * this.view.spherical.smoothing * this.time.delta
 
