@@ -19,6 +19,8 @@ export interface Config {
     pixelRatio?: number
     width?: number
     height?: number
+    smallestSide?: number
+    largestSide?: number
 }
 
 export default class Experience
@@ -89,6 +91,8 @@ export default class Experience
         const boundings = this.targetElement?.getBoundingClientRect()
         this.config.width = boundings?.width
         this.config.height = boundings?.height || window.innerHeight
+        this.config.smallestSide = Math.min(this.config.width, this.config.height)
+        this.config.largestSide = Math.max(this.config.width, this.config.height)
     }
 
     setDebug(): void {
@@ -147,6 +151,9 @@ export default class Experience
         const boundings = this.targetElement.getBoundingClientRect()
         this.config.width = boundings.width
         this.config.height = boundings.height
+
+        this.config.smallestSide = Math.min(this.config.width, this.config.height)
+        this.config.largestSide = Math.max(this.config.width, this.config.height)
         
         this.config.pixelRatio = Math.min(Math.max(window.devicePixelRatio, 1), 2)
 

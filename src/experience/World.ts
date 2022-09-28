@@ -53,6 +53,9 @@ export default class World
                 _child.material = this.room.material
             }
         })
+
+        const axesHelper = new THREE.AxesHelper( 5 );
+        this.scene.add( axesHelper );
         
         // const directionalLight = new THREE.DirectionalLight('#ffffff', 7)
         // directionalLight.position.set(1, 5, 10)
