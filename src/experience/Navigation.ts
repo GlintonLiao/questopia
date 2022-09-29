@@ -1,17 +1,20 @@
 import * as THREE from 'three'
 import normalizeWheel from 'normalize-wheel'
 import Experience, { Config } from './Experience'
+import Camera from './Camera'
+import Time from './utils/Time'
 
 export default class Navigation {
 
     experience: Experience
-    camera: any
-    view?: any
+    camera: Camera
     config: Config
-    scene: any
-    time: any
+    scene: THREE.Scene
+    time: Time
+    view?: any
 
     constructor() {
+
         this.experience = new Experience()
         this.camera = this.experience.camera
         this.config = this.experience.config
@@ -21,9 +24,12 @@ export default class Navigation {
         this.setView()
     }
 
+    // main function
     setView(): void {
+
         this.view = {}
 
+        // spherical
         this.view.spherical = {}
         this.view.spherical.value = new THREE.Spherical(5.5, Math.PI * 0.41, Math.PI * 0.15)
         this.view.spherical.smoothed = this.view.spherical.value.clone()
@@ -33,6 +39,7 @@ export default class Navigation {
         this.view.spherical.limits.phi = { min: 0, max: Math.PI * 0.48 }
         this.view.spherical.limits.theta = { min: -Math.PI * 0.05, max: Math.PI * 0.5 }
 
+        // target
         this.view.target = {}
         this.view.target.value = new THREE.Vector3(-0.4, 0.4, 0.25)
         this.view.target.smoothed = this.view.target.value.clone()
@@ -49,6 +56,7 @@ export default class Navigation {
         // const arrowHelper = new THREE.ArrowHelper( this.view.target, origin, length, hex );
         // this.scene.add( arrowHelper );
 
+        // drag
         this.view.drag = {}
         this.view.drag.delta = {}
         this.view.drag.delta.x = 0
@@ -59,6 +67,7 @@ export default class Navigation {
         this.view.drag.sensitivity = 1
         this.view.drag.alternative = false
 
+        // zoom
         this.view.zoom = {}
         this.view.zoom.sensitivity = 0.01
         this.view.zoom.delta = 0
@@ -85,8 +94,9 @@ export default class Navigation {
             this.view.zoom.delta += _delta
         }
 
-        // Mouse events
+        // mouse events
         this.view.onMouseDown = (_event: MouseEvent): void => {
+
             _event.preventDefault()
 
             this.view.drag.alternative = _event.button === 2 || _event.button === 1 || _event.ctrlKey || _event.shiftKey
@@ -111,6 +121,7 @@ export default class Navigation {
             window.removeEventListener('mousemove', this.view.onMouseMove)
         }
 
+        // disable right-click menu
         this.view.onContextMenu = (_event: MouseEvent): void => {
             _event.preventDefault()
         }
@@ -118,9 +129,7 @@ export default class Navigation {
         window.addEventListener('mousedown', this.view.onMouseDown)
         window.addEventListener('contextmenu', this.view.onContextMenu)
 
-        /**
-         * Touch events
-         */
+        // touch events
         this.view.onTouchStart = (_event: TouchEvent): void => {
             _event.preventDefault()
 
@@ -149,9 +158,7 @@ export default class Navigation {
 
         window.addEventListener('touchstart', this.view.onTouchStart)
 
-        /**
-         * Wheel
-         */
+        // wheel
         this.view.onWheel = (_event: WheelEvent): void => {
             _event.preventDefault()
 
@@ -196,7 +203,7 @@ export default class Navigation {
             this.view.spherical.value.theta -= this.view.drag.delta.x * this.view.drag.sensitivity / this.config.smallestSide
             this.view.spherical.value.phi -= this.view.drag.delta.y * this.view.drag.sensitivity / this.config.smallestSide    
         
-            // Apply limits
+            // apply limits
             this.view.spherical.value.theta = Math.min(Math.max(this.view.spherical.value.theta, this.view.spherical.limits.theta.min), this.view.spherical.limits.theta.max)
             this.view.spherical.value.phi = Math.min(Math.max(this.view.spherical.value.phi, this.view.spherical.limits.phi.min), this.view.spherical.limits.phi.max)
         }

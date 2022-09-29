@@ -1,4 +1,5 @@
 import * as THREE from 'three'
+import Title from './components/Title.js'
 import Experience, { Config } from './Experience.js'
 import Resources from './Resources.js'
 
@@ -10,6 +11,7 @@ export default class World
     resources: Resources
 
     room: any = {}
+    title: any = {}
 
     constructor(_options?: any)
     {
@@ -24,6 +26,7 @@ export default class World
             {
                 // this.setDummy()
                 this.setRoom()
+                this.setTitle()
             }
         })
     }
@@ -48,7 +51,7 @@ export default class World
         this.room.texture.flipY = false
         this.room.material = new THREE.MeshBasicMaterial({ map: this.room.texture})
 
-        this.room.model.traverse((_child) => {
+        this.room.model.traverse((_child: { material: any }) => {
             if (_child instanceof THREE.Mesh) {
                 _child.material = this.room.material
             }
@@ -62,15 +65,16 @@ export default class World
         // this.scene.add(directionalLight)
     }
 
-    resize()
-    {
+    setTitle(): void {
+        this.title = new Title()
     }
 
-    update()
-    {
+    resize() {
     }
 
-    destroy()
-    {
+    update() {
+    }
+
+    destroy() {
     }
 }
