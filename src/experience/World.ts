@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import Baked from './Baked.js'
+import ArchiModel from './components/ArchiModels.js'
 import Title from './components/Title.js'
 import Experience, { Config } from './Experience.js'
 import Resources from './Resources.js'
@@ -13,6 +14,7 @@ export default class World
 
     room: any = {}
     title: any = {}
+    archiModel: ArchiModel
     baked: Baked
 
     constructor(_options?: any)
@@ -30,6 +32,7 @@ export default class World
                 // this.setRoom()
                 this.setBaked()
                 this.setTitle()
+                this.setArchiModel()
             }
         })
     }
@@ -76,6 +79,10 @@ export default class World
 
     setTitle(): void {
         this.title = new Title()
+    }
+
+    setArchiModel(): void {
+        this.archiModel = new ArchiModel()
     }
 
     resize() {

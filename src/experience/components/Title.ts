@@ -22,7 +22,7 @@ export default class Title {
         this.item = {}
         this.item.model = this.resources.items.titleModel.scene
         this.scene.add(this.item.model)
-        this.item.material = new THREE.MeshBasicMaterial({ color: '#99b5ff'})
+        this.item.material = new THREE.MeshBasicMaterial({ color: '#C1D2FF'})
 
         this.item.model.traverse((_child: { material: any }) => {
             if (_child instanceof THREE.Mesh) {

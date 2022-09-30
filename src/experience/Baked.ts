@@ -1,8 +1,8 @@
 import * as THREE from 'three'
 
 import Experience from './Experience.js'
-import vertexShader from './shaders/baked/vertex.glsl?raw'
-import fragmentShader from './shaders/baked/fragment.glsl?raw'
+import vertexShader from './shaders/baked/vertex.glsl'
+import fragmentShader from './shaders/baked/fragment.glsl'
 import Resources from './Resources.js'
 import { Scene } from 'three'
 import Time from './utils/Time.js'
@@ -17,6 +17,7 @@ export default class Baked
     time: Time
     debugFolder: any
     room: any
+    images: any
     colors: any
     mixed: any
 
@@ -28,6 +29,10 @@ export default class Baked
         this.scene = this.experience.scene
         this.time = this.experience.time
 
+        this.mixed = {
+            value: 0
+        }
+
         // Debug
         if(this.debug)
         {
@@ -37,17 +42,19 @@ export default class Baked
             })
         }
 
-        this.setModel()
+        this.setRoom()
+        this.setImages()
+        this.setDebug()
     }
 
-    setModel()
+    setRoom(): void
     {
         this.room = {}
         
         this.room.model = this.resources.items.roomModel.scene
 
         this.room.bakedDayTexture = this.resources.items.bakedDayTexture
-        this.room.bakedDayTexture.encoding = THREE.sRGBEncoding
+        // this.room.bakedDayTexture.encoding = THREE.sRGBEncoding
         this.room.bakedDayTexture.flipY = false
 
         this.room.bakedNightTexture = this.resources.items.bakedNightTexture
@@ -65,10 +72,6 @@ export default class Baked
         this.colors.tv = '#ff115e'
         this.colors.desk = '#ff6700'
         this.colors.pc = '#0082ff'
-
-        this.mixed = {
-            value: 0
-        }
 
         this.room.material = new THREE.ShaderMaterial({
             uniforms:
@@ -102,7 +105,40 @@ export default class Baked
 
         this.scene.add(this.room.model)
         
-        // Debug
+    }
+
+    setImages(): void {
+        this.images = {}
+        this.images.model = this.experience.resources.items.imagesModel.scene
+        this.images.imagesDayTexture = this.experience.resources.items.imagesDayTexture
+        this.images.imagesDayTexture.flipY = false;
+        this.images.imagesNightTexture = this.experience.resources.items.imagesNightTexture
+        this.images.imagesNightTexture.flipY = false;
+
+        this.images.material = new THREE.ShaderMaterial({
+            uniforms: {
+                uBakedDayTexture: { value: this.images.imagesDayTexture },
+                uBakedNightTexture: { value: this.images.imagesNightTexture },
+                // uLightMapTexture: { value: this.room.lightMapTexture },
+
+                uNightMix: { value: this.mixed.value },
+            },
+            vertexShader: vertexShader,
+            fragmentShader: fragmentShader
+        })
+
+        this.images.model.traverse((_child) =>
+        {
+            if(_child instanceof THREE.Mesh)
+            {
+                _child.material = this.images.material
+            }
+        })
+
+        this.scene.add(this.images.model)
+    }
+
+    setDebug(): void {
         if (this.debug)
         {
             // this.debugFolder
@@ -119,7 +155,9 @@ export default class Baked
                     { label: 'uMix', min: 0, max: 1 }
                 )
                 .on('change', () => {
-                    this.room.material.uniforms.uNightMix.value = this.mixed.value
+                    this.room.material.uniforms.uNightMix.value 
+                    = this.images.material.uniforms.uNightMix.value 
+                    = this.mixed.value
                 })
 
             // this.debugFolder
