@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import GUI from 'lil-gui'
+import { Pane } from 'tweakpane'
 import Time from './utils/Time'
 import Sizes from './utils/Sizes'
 import Stats from './utils/Stats'
@@ -33,7 +33,7 @@ export default class Experience
 
     config?: Config
     stats?: Stats
-    debug?: GUI
+    debug?: any
 
     scene?: THREE.Scene
     renderer: Renderer
@@ -63,7 +63,6 @@ export default class Experience
 
         this.setConfig()
         this.setDebug()
-        this.setStats()
         this.setScene()
         this.setCamera()
         this.setRenderer()
@@ -93,11 +92,14 @@ export default class Experience
         this.config.height = boundings?.height || window.innerHeight
         this.config.smallestSide = Math.min(this.config.width, this.config.height)
         this.config.largestSide = Math.max(this.config.width, this.config.height)
+
+        this.config.debug = this.config.width > 420
     }
 
     setDebug(): void {
         if (this.config?.debug) {
-            this.debug = new GUI()
+            this.debug = new Pane()
+            this.debug.containerElem_.style.width = '320px'
         }
     }
 

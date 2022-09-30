@@ -12,10 +12,12 @@ export default class Navigation {
     scene: THREE.Scene
     time: Time
     view?: any
+    targetElement: any
 
     constructor() {
 
         this.experience = new Experience()
+        this.targetElement = this.experience.targetElement
         this.camera = this.experience.camera
         this.config = this.experience.config
         this.scene = this.experience.scene
@@ -121,12 +123,13 @@ export default class Navigation {
             window.removeEventListener('mousemove', this.view.onMouseMove)
         }
 
+        this.targetElement.addEventListener('mousedown', this.view.onMouseDown)
+
         // disable right-click menu
         this.view.onContextMenu = (_event: MouseEvent): void => {
             _event.preventDefault()
         }
 
-        window.addEventListener('mousedown', this.view.onMouseDown)
         window.addEventListener('contextmenu', this.view.onContextMenu)
 
         // touch events

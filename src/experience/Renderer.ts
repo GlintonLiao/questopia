@@ -3,7 +3,7 @@ import Experience, { Config } from './Experience'
 import Time from './utils/Time'
 import Sizes from './utils/Sizes'
 import Stats from './utils/Stats'
-import GUI from 'lil-gui'
+import { Pane } from 'tweakpane'
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer'
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass'
 import Camera from './Camera'
@@ -15,14 +15,14 @@ export default class Renderer {
     time: Time
     sizes: Sizes
     stats: Stats
-    debug: GUI
+    debug: any
     scene: THREE.Scene
     usePostprocess: boolean
     postProcess: any
     clearColor: string
     camera: Camera
 
-    debugFolder: GUI
+    debugFolder: Pane
 
     instance?: THREE.WebGLRenderer
     context: WebGLRenderingContext | WebGL2RenderingContext
@@ -37,10 +37,6 @@ export default class Renderer {
         this.sizes = this.experience.sizes
         this.scene = this.experience.scene
         this.camera = this.experience.camera
-
-        if (this.debug) {
-            this.debugFolder = this.debug.addFolder('renderer')
-        }
 
         this.usePostprocess = false
 
@@ -77,32 +73,6 @@ export default class Renderer {
         // stats panel
         if (this.stats) this.stats.setRenderPanel(this.context)
 
-        if (this.debug) {
-            this.debugFolder
-                .addColor(this, 'clearColor')
-                .onChange(() => {
-                    this.instance.setClearColor(this.clearColor)
-                })
-            
-            this.debugFolder
-                .add(this.instance, 'toneMapping', {
-                    'NoToneMapping': THREE.NoToneMapping,
-                    'LinearToneMapping': THREE.LinearToneMapping,
-                    'ReinhardToneMapping': THREE.ReinhardToneMapping,
-                    'CineonToneMapping': THREE.CineonToneMapping,
-                    'ACESFilmicToneMapping': THREE.ACESFilmicToneMapping
-                })
-                .onChange(() => {
-                    this.scene.traverse((_child: THREE.Object3D<THREE.Event>) => {
-                        if (_child instanceof THREE.Mesh) _child.material.needsUpdate = true
-                    })
-                })
-            
-            this.debugFolder
-                .add(this.instance, 'toneMappingExposure')
-                .min(0)
-                .max(10)
-        }
     }
 
     setPostProcess(): void {

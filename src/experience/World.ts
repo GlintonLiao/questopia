@@ -1,4 +1,5 @@
 import * as THREE from 'three'
+import Baked from './Baked.js'
 import Title from './components/Title.js'
 import Experience, { Config } from './Experience.js'
 import Resources from './Resources.js'
@@ -12,6 +13,7 @@ export default class World
 
     room: any = {}
     title: any = {}
+    baked: Baked
 
     constructor(_options?: any)
     {
@@ -25,7 +27,8 @@ export default class World
             if(_group.name === 'base')
             {
                 // this.setDummy()
-                this.setRoom()
+                // this.setRoom()
+                this.setBaked()
                 this.setTitle()
             }
         })
@@ -42,15 +45,21 @@ export default class World
         this.scene.add(cube)
     }
 
+    setBaked(): void {
+        this.baked = new Baked()
+    }
+
     setRoom(): void {
         this.room = {}
         this.room.model = this.resources.items.roomModel.scene
         this.scene.add(this.room.model)
-        this.room.texture = this.resources.items.bakedTexture
+        this.room.texture = this.resources.items.bakedDayTexture
         this.room.texture.encoding = THREE.sRGBEncoding
         this.room.texture.flipY = false
         this.room.material = new THREE.MeshBasicMaterial({ map: this.room.texture})
 
+        console.log(this.room);
+        
         this.room.model.traverse((_child: { material: any }) => {
             if (_child instanceof THREE.Mesh) {
                 _child.material = this.room.material
