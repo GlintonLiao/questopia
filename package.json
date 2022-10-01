@@ -15,14 +15,11 @@
     "vite": "^3.1.0"
   },
   "dependencies": {
-    "glsl-blend": "^1.0.3",
-    "glslify-loader": "^2.0.0",
     "lil-gui": "^0.17.0",
     "normalize-wheel": "^1.0.1",
     "stats.js": "^0.17.0",
     "three": "^0.144.0",
     "tweakpane": "^3.1.0",
-    "vite-plugin-glsl": "^0.4.0",
-    "vite3-plugin-glslify": "^0.0.7"
+    "vite-plugin-glsl": "^0.4.0"
   }
 }

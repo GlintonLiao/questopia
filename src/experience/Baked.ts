@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 
+
 import Experience from './Experience.js'
 import vertexShader from './shaders/baked/vertex.glsl'
 import fragmentShader from './shaders/baked/fragment.glsl'
@@ -58,7 +59,7 @@ export default class Baked
         this.room.bakedDayTexture.flipY = false
 
         this.room.bakedNightTexture = this.resources.items.bakedNightTexture
-        this.room.bakedNightTexture.encoding = THREE.sRGBEncoding
+        // this.room.bakedNightTexture.encoding = THREE.sRGBEncoding
         this.room.bakedNightTexture.flipY = false
 
         // this.model.bakedNeutralTexture = this.resources.items.bakedNeutralTexture
@@ -82,8 +83,8 @@ export default class Baked
 
                 uNightMix: { value: this.mixed.value },
 
-                // uLightTvColor: { value: new THREE.Color(this.colors.tv) },
-                // uLightTvStrength: { value: 1.47 },
+                uLightTvColor: { value: new THREE.Color(this.colors.tv) },
+                uLightTvStrength: { value: 1.47 },
 
                 // uLightDeskColor: { value: new THREE.Color(this.colors.desk) },
                 // uLightDeskStrength: { value: 1.9 },
@@ -160,23 +161,23 @@ export default class Baked
                     = this.mixed.value
                 })
 
-            // this.debugFolder
-            //     .addInput(
-            //         this.colors,
-            //         'tv',
-            //         { view: 'color' }
-            //     )
-            //     .on('change', () =>
-            //     {
-            //         this.room.material.uniforms.uLightTvColor.value.set(this.colors.tv)
-            //     })
+            this.debugFolder
+                .addInput(
+                    this.colors,
+                    'tv',
+                    { view: 'color' }
+                )
+                .on('change', () =>
+                {
+                    this.room.material.uniforms.uLightTvColor.value.set(this.colors.tv)
+                })
 
-            // this.debugFolder
-            //     .addInput(
-            //         this.room.material.uniforms.uLightTvStrength,
-            //         'value',
-            //         { label: 'uLightTvStrength', min: 0, max: 3 }
-            //     )
+            this.debugFolder
+                .addInput(
+                    this.room.material.uniforms.uLightTvStrength,
+                    'value',
+                    { label: 'uLightTvStrength', min: 0, max: 3 }
+                )
 
             // this.debugFolder
             //     .addInput(
