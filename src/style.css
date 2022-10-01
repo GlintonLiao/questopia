@@ -17,3 +17,25 @@ body
     width: 100vw;
     height: 100vh;
 }
+
+.info
+{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    text-align: right;
+    background-color: rgba(256, 256, 256, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.info:hover {
+    background-color: rgba(256, 256, 256, 0.3);
+}
+
+.info > a
+{
+    color: white;
+    text-decoration: none;
+    font-family: Ubuntu;
+}
