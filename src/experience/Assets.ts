@@ -10,10 +10,13 @@ export default [
             { name: 'bigScreenModel', source: '/assets/bigScreenModel.glb', type: 'model'},
             { name: 'smallScreenModel', source: '/assets/smallScreenModel.glb', type: 'model'},
             { name: 'imagesModel', source: '/assets/imagesModel.glb', type: 'model'},
+            { name: 'chairModel', source: '/assets/chairModel.glb', type: 'model'},
+            { name: 'coffeeSteamModel', source: '/assets/coffeeSteamModel.glb', type: 'model'},
             { name: 'bakedNightTexture', source: '/assets/bakedNightTexture.jpg', type: 'texture'},
             { name: 'bakedDayTexture', source: '/assets/bakedDayTexture.jpg', type: 'texture'},
             { name: 'imagesDayTexture', source: '/assets/imagesDayTexture.jpg', type: 'texture'},
             { name: 'imagesNightTexture', source: '/assets/imagesNightTexture.jpg', type: 'texture'},
+            { name: 'imagesMapTexture', source: '/assets/imagesMap.jpg', type: 'texture'},
             { name: 'lightMapTexture', source: '/assets/lightMapTexture.jpg', type: 'texture'},
         ]
     }

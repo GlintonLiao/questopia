@@ -5,6 +5,8 @@ import Title from './components/Title.js'
 import Experience, { Config } from './Experience.js'
 import Resources from './Resources.js'
 import Screen from './components/Screen.js'
+import RotatingChair from './components/RotatingChair.js'
+import CoffeeSteam from './components/CoffeeSteam.js'
 
 export default class World
 {
@@ -20,6 +22,9 @@ export default class World
 
     bigScreen: Screen
     smallScreen: Screen
+
+    chair: RotatingChair
+    coffeeSteam: CoffeeSteam
 
     constructor(_options?: any)
     {
@@ -38,6 +43,8 @@ export default class World
                 this.setTitle()
                 this.setArchiModel()
                 this.setScreens()
+                this.setChair()
+                this.setCoffee()
             }
         })
     }
@@ -95,10 +102,20 @@ export default class World
         this.smallScreen = new Screen(this.experience.resources.items.smallScreenModel.scene.children[0], '/assets/smallScreenImage.jpg')
     }
 
+    setChair(): void {
+        this.chair = new RotatingChair()
+    }
+
+    setCoffee(): void {
+        this.coffeeSteam = new CoffeeSteam()
+    }
+
     resize() {
     }
 
     update() {
+        if (this.chair) this.chair.update()
+        if (this.coffeeSteam) this.coffeeSteam.update()
     }
 
     destroy() {

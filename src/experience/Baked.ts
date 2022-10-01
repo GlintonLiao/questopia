@@ -68,10 +68,11 @@ export default class Baked
         this.room.lightMapTexture = this.resources.items.lightMapTexture
         this.room.lightMapTexture.flipY = false
 
-        this.colors = {}
-        this.colors.screen = '#99C2DB'
-        this.colors.lamp = '#FFD05F'
-        this.colors.shelf = '#9d5bb0'
+        this.colors = {
+            Screen: '#99C2DB', 
+            Lamp: '#FFD05F', 
+            Shelf: '#9d5bb0',
+        }
 
         this.room.material = new THREE.ShaderMaterial({
             uniforms:
@@ -82,13 +83,13 @@ export default class Baked
 
                 uNightMix: { value: this.mixed.value },
 
-                uLightScreenColor: { value: new THREE.Color(this.colors.screen) },
+                uLightScreenColor: { value: new THREE.Color(this.colors.Screen) },
                 uLightScreenStrength: { value: 1.5 },
 
-                uLightLampColor: { value: new THREE.Color(this.colors.lamp) },
+                uLightLampColor: { value: new THREE.Color(this.colors.Lamp) },
                 uLightLampStrength: { value: 1.6 },
 
-                uLightShelfColor: { value: new THREE.Color(this.colors.shelf) },
+                uLightShelfColor: { value: new THREE.Color(this.colors.Shelf) },
                 uLightShelfStrength: { value: 1.0 }
             },
             vertexShader: vertexShader,
@@ -120,7 +121,7 @@ export default class Baked
             uniforms: {
                 uBakedDayTexture: { value: this.images.imagesDayTexture },
                 uBakedNightTexture: { value: this.images.imagesNightTexture },
-                // uLightMapTexture: { value: this.room.lightMapTexture },
+                uLightMapTexture: { value: this.images.imagesMapTexture },
 
                 uNightMix: { value: this.mixed.value },
             },
@@ -157,55 +158,55 @@ export default class Baked
             this.debugFolder
                 .addInput(
                     this.colors,
-                    'screen',
+                    'Screen',
                     { view: 'color' }
                 )
                 .on('change', () =>
                 {
-                    this.room.material.uniforms.uLightScreenColor.value.set(this.colors.screen)
+                    this.room.material.uniforms.uLightScreenColor.value.set(this.colors.Screen)
                 })
 
             this.debugFolder
                 .addInput(
                     this.room.material.uniforms.uLightScreenStrength,
                     'value',
-                    { label: 'ScreenStrength', min: 0, max: 3 }
+                    { label: 'Screen Luminance', min: 0, max: 3 }
                 )
 
             this.debugFolder
                 .addInput(
                     this.colors,
-                    'lamp',
+                    'Lamp',
                     { view: 'color' }
                 )
                 .on('change', () =>
                 {
-                    this.room.material.uniforms.uLightLampColor.value.set(this.colors.lamp)
+                    this.room.material.uniforms.uLightLampColor.value.set(this.colors.Lamp)
                 })
 
             this.debugFolder
                 .addInput(
                     this.room.material.uniforms.uLightLampStrength,
                     'value',
-                    { label: 'LampStrength', min: 0, max: 3 }
+                    { label: 'Lamp Luminance', min: 0, max: 3 }
                 )
 
             this.debugFolder
                 .addInput(
                     this.colors,
-                    'shelf',
+                    'Shelf',
                     { view: 'color' }
                 )
                 .on('change', () =>
                 {
-                    this.room.material.uniforms.uLightShelfColor.value.set(this.colors.shelf)
+                    this.room.material.uniforms.uLightShelfColor.value.set(this.colors.Shelf)
                 })
 
             this.debugFolder
                 .addInput(
                     this.room.material.uniforms.uLightShelfStrength,
                     'value',
-                    { label: 'ShelfStrength', min: 0, max: 3 }
+                    { label: 'Shelf Luminance', min: 0, max: 3 }
                 )
         }
     }
