@@ -4,6 +4,7 @@ import ArchiModel from './components/ArchiModels.js'
 import Title from './components/Title.js'
 import Experience, { Config } from './Experience.js'
 import Resources from './Resources.js'
+import Screen from './components/Screen.js'
 
 export default class World
 {
@@ -16,6 +17,9 @@ export default class World
     title: any = {}
     archiModel: ArchiModel
     baked: Baked
+
+    bigScreen: Screen
+    smallScreen: Screen
 
     constructor(_options?: any)
     {
@@ -33,6 +37,7 @@ export default class World
                 this.setBaked()
                 this.setTitle()
                 this.setArchiModel()
+                this.setScreens()
             }
         })
     }
@@ -83,6 +88,11 @@ export default class World
 
     setArchiModel(): void {
         this.archiModel = new ArchiModel()
+    }
+
+    setScreens(): void {
+        this.bigScreen = new Screen(this.experience.resources.items.bigScreenModel.scene.children[0], '/assets/bigScreenImage.jpg')
+        this.smallScreen = new Screen(this.experience.resources.items.smallScreenModel.scene.children[0], '/assets/smallScreenImage.jpg')
     }
 
     resize() {

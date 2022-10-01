@@ -38,7 +38,7 @@ export default class Baked
         if(this.debug)
         {
             this.debugFolder = this.debug.addFolder({
-                title: 'baked',
+                title: 'Settings',
                 expanded: true
             })
         }
