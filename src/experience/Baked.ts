@@ -1,6 +1,5 @@
 import * as THREE from 'three'
 
-
 import Experience from './Experience.js'
 import vertexShader from './shaders/baked/vertex.glsl'
 import fragmentShader from './shaders/baked/fragment.glsl'
@@ -66,31 +65,31 @@ export default class Baked
         // this.model.bakedNeutralTexture.encoding = THREE.sRGBEncoding
         // this.model.bakedNeutralTexture.flipY = false
 
-        // this.model.lightMapTexture = this.resources.items.lightMapTexture
-        // this.model.lightMapTexture.flipY = false
+        this.room.lightMapTexture = this.resources.items.lightMapTexture
+        this.room.lightMapTexture.flipY = false
 
         this.colors = {}
-        this.colors.tv = '#ff115e'
-        this.colors.desk = '#ff6700'
-        this.colors.pc = '#0082ff'
+        this.colors.screen = '#99C2DB'
+        this.colors.lamp = '#FFD05F'
+        this.colors.shelf = '#9d5bb0'
 
         this.room.material = new THREE.ShaderMaterial({
             uniforms:
             {
                 uBakedDayTexture: { value: this.room.bakedDayTexture },
                 uBakedNightTexture: { value: this.room.bakedNightTexture },
-                // uLightMapTexture: { value: this.room.lightMapTexture },
+                uLightMapTexture: { value: this.room.lightMapTexture },
 
                 uNightMix: { value: this.mixed.value },
 
-                uLightTvColor: { value: new THREE.Color(this.colors.tv) },
-                uLightTvStrength: { value: 1.47 },
+                uLightScreenColor: { value: new THREE.Color(this.colors.screen) },
+                uLightScreenStrength: { value: 1.5 },
 
-                // uLightDeskColor: { value: new THREE.Color(this.colors.desk) },
-                // uLightDeskStrength: { value: 1.9 },
+                uLightLampColor: { value: new THREE.Color(this.colors.lamp) },
+                uLightLampStrength: { value: 1.6 },
 
-                // uLightPcColor: { value: new THREE.Color(this.colors.pc) },
-                // uLightPcStrength: { value: 1.4 }
+                uLightShelfColor: { value: new THREE.Color(this.colors.shelf) },
+                uLightShelfStrength: { value: 1.0 }
             },
             vertexShader: vertexShader,
             fragmentShader: fragmentShader
@@ -109,6 +108,7 @@ export default class Baked
     }
 
     setImages(): void {
+        
         this.images = {}
         this.images.model = this.experience.resources.items.imagesModel.scene
         this.images.imagesDayTexture = this.experience.resources.items.imagesDayTexture
@@ -142,18 +142,11 @@ export default class Baked
     setDebug(): void {
         if (this.debug)
         {
-            // this.debugFolder
-            //     .addInput(
-            //         this.room.material.uniforms.uNightMix,
-            //         'value',
-            //         { label: 'uNightMix', min: 0, max: 1 }
-            //     )
-
             this.debugFolder
                 .addInput(
                     this.mixed,
                     'value',
-                    { label: 'uMix', min: 0, max: 1 }
+                    { label: 'Day/Night', min: 0, max: 1 }
                 )
                 .on('change', () => {
                     this.room.material.uniforms.uNightMix.value 
@@ -164,56 +157,56 @@ export default class Baked
             this.debugFolder
                 .addInput(
                     this.colors,
-                    'tv',
+                    'screen',
                     { view: 'color' }
                 )
                 .on('change', () =>
                 {
-                    this.room.material.uniforms.uLightTvColor.value.set(this.colors.tv)
+                    this.room.material.uniforms.uLightScreenColor.value.set(this.colors.screen)
                 })
 
             this.debugFolder
                 .addInput(
-                    this.room.material.uniforms.uLightTvStrength,
+                    this.room.material.uniforms.uLightScreenStrength,
                     'value',
-                    { label: 'uLightTvStrength', min: 0, max: 3 }
+                    { label: 'ScreenStrength', min: 0, max: 3 }
                 )
 
-            // this.debugFolder
-            //     .addInput(
-            //         this.colors,
-            //         'desk',
-            //         { view: 'color' }
-            //     )
-            //     .on('change', () =>
-            //     {
-            //         this.room.material.uniforms.uLightDeskColor.value.set(this.colors.desk)
-            //     })
+            this.debugFolder
+                .addInput(
+                    this.colors,
+                    'lamp',
+                    { view: 'color' }
+                )
+                .on('change', () =>
+                {
+                    this.room.material.uniforms.uLightLampColor.value.set(this.colors.lamp)
+                })
 
-            // this.debugFolder
-            //     .addInput(
-            //         this.room.material.uniforms.uLightDeskStrength,
-            //         'value',
-            //         { label: 'uLightDeskStrength', min: 0, max: 3 }
-            //     )
+            this.debugFolder
+                .addInput(
+                    this.room.material.uniforms.uLightLampStrength,
+                    'value',
+                    { label: 'LampStrength', min: 0, max: 3 }
+                )
 
-            // this.debugFolder
-            //     .addInput(
-            //         this.colors,
-            //         'pc',
-            //         { view: 'color' }
-            //     )
-            //     .on('change', () =>
-            //     {
-            //         this.room.material.uniforms.uLightPcColor.value.set(this.colors.pc)
-            //     })
+            this.debugFolder
+                .addInput(
+                    this.colors,
+                    'shelf',
+                    { view: 'color' }
+                )
+                .on('change', () =>
+                {
+                    this.room.material.uniforms.uLightShelfColor.value.set(this.colors.shelf)
+                })
 
-            // this.debugFolder
-            //     .addInput(
-            //         this.room.material.uniforms.uLightPcStrength,
-            //         'value',
-            //         { label: 'uLightPcStrength', min: 0, max: 3 }
-            //     )
+            this.debugFolder
+                .addInput(
+                    this.room.material.uniforms.uLightShelfStrength,
+                    'value',
+                    { label: 'ShelfStrength', min: 0, max: 3 }
+                )
         }
     }
 }
