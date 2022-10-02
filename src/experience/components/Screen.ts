@@ -1,6 +1,6 @@
 import * as THREE from 'three'
-
 import Experience from '../Experience.js'
+import Raycaster from '../Raycaster.js'
 import World from '../World.js'
 
 export default class Screen
@@ -12,11 +12,14 @@ export default class Screen
     item: any
     debug: any
     world: World
+    camera: any
 
     mesh: any
     sourcePath: any
 
     model: any
+    raycaster: THREE.Raycaster
+    pointer: THREE.Vec2
 
     constructor(_mesh, _sourcePath)
     {
@@ -25,6 +28,8 @@ export default class Screen
         this.debug = this.experience.debug
         this.scene = this.experience.scene
         this.world = this.experience.world
+        this.raycaster = this.world.raycaster
+        this.camera = this.experience.camera.instance
 
         this.mesh = _mesh
         this.sourcePath = _sourcePath
@@ -59,10 +64,9 @@ export default class Screen
         this.model.mesh = this.mesh
         this.model.mesh.material = this.model.material
         this.scene.add(this.model.mesh)
+        
     }
 
-    update()
-    {
-        // this.model.group.rotation.y = Math.sin(this.time.elapsed * 0.0005) * 0.5
+    update() {   
     }
 }

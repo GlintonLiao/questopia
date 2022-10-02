@@ -7,6 +7,7 @@ import Resources from './Resources.js'
 import Screen from './components/Screen.js'
 import RotatingChair from './components/RotatingChair.js'
 import CoffeeSteam from './components/CoffeeSteam.js'
+import Raycaster from './Raycaster.js'
 
 export default class World
 {
@@ -25,6 +26,8 @@ export default class World
 
     chair: RotatingChair
     coffeeSteam: CoffeeSteam
+
+    raycaster: any
 
     constructor(_options?: any)
     {
@@ -45,6 +48,7 @@ export default class World
                 this.setScreens()
                 this.setChair()
                 this.setCoffee()
+                this.setRaycaster()
             }
         })
     }
@@ -83,10 +87,6 @@ export default class World
 
         const axesHelper = new THREE.AxesHelper( 5 );
         this.scene.add( axesHelper );
-        
-        // const directionalLight = new THREE.DirectionalLight('#ffffff', 7)
-        // directionalLight.position.set(1, 5, 10)
-        // this.scene.add(directionalLight)
     }
 
     setTitle(): void {
@@ -110,12 +110,18 @@ export default class World
         this.coffeeSteam = new CoffeeSteam()
     }
 
+    setRaycaster(): void {
+        this.raycaster = new Raycaster()
+    } 
+
     resize() {
     }
 
     update() {
         if (this.chair) this.chair.update()
         if (this.coffeeSteam) this.coffeeSteam.update()
+        if (this.bigScreen) this.bigScreen.update()
+        if (this.raycaster) this.raycaster.update()
     }
 
     destroy() {
