@@ -4,6 +4,7 @@ import Experience from './Experience'
 import World from './World'
 import { OutlinePass } from 'three/examples/jsm/postprocessing/OutlinePass.js'
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js'
+import Screen from './components/Screen'
 
 export default class Raycaster {
 
@@ -19,6 +20,12 @@ export default class Raycaster {
     effectComposer: EffectComposer
     chair: any
     renderer: THREE.Renderer
+
+    objs: any
+    bigScreen: Screen
+    smallScreen: Screen
+
+    hoverPages: any[]
     
 
     constructor() {
@@ -29,8 +36,17 @@ export default class Raycaster {
         this.camera = this.experience.camera.instance
         this.renderer = this.experience.renderer.instance
 
-        this.screen = this.world.bigScreen
+        this.bigScreen = this.world.bigScreen
+        this.smallScreen = this.world.smallScreen
         this.currentObj = null
+        this.objs = [this.bigScreen.model.mesh, this.smallScreen.model.mesh]
+
+        this.hoverPages = [
+            {
+                position: new THREE.Vector3(-1, 0.8, 0.3),
+                element: document.querySelector('.programming')
+            }
+        ]
         
         this.setCaster()
     }
@@ -45,32 +61,48 @@ export default class Raycaster {
             this.pointer.y = - ( e.clientY / window.innerHeight ) * 2 + 1;
         });
 
-        this.obj1 = new THREE.Mesh(
-            new THREE.SphereGeometry(0.1, 0.1, 0.1),
-            new THREE.MeshBasicMaterial({ color: '#ff0000' })
-        )
-        this.obj1.position.set(-1, 1, 1)
+        window.addEventListener('click', () => {
+            if (!this.currentObj) return
+            if (this.currentObj.name === 'Cube349') this.bigScreen.show()
+        })
+
+        // this.obj1 = new THREE.Mesh(
+        //     new THREE.SphereGeometry(0.1, 0.1, 0.1),
+        //     new THREE.MeshBasicMaterial({ color: '#ff0000' })
+        // )
+        // this.obj1.position.set(-1, 1, 1)
     }
 
     update(): void {
         this.raycaster.setFromCamera(this.pointer, this.experience.camera.instance)
-        const intersects = this.raycaster.intersectObject(this.screen.model.mesh)
 
+        const intersects = this.raycaster.intersectObjects(this.objs)
+        
         if (intersects.length) {
             if (!this.currentObj) {
                 this.currentObj = intersects[0].object
                 this.currentObj.material.color.set('#99c2db')
-                console.log(this.currentObj.material.color);
+                console.log(this.currentObj);
                 
             }
-            this.scene.add(this.obj1)
+
+            const screenPosition = this.hoverPages[0].position.clone()
+            screenPosition.project(this.experience.camera.instance)
+
+            this.hoverPages[0].element.classList.add("visible")
+            const translateX = screenPosition.x * this.experience.sizes.width * 0.5
+            const translateY = - screenPosition.y * this.experience.sizes.height * 0.5
+            this.hoverPages[0].element.style.transform = `translateX(${translateX}px) translateY(${translateY}px)`
+
+            // this.scene.add(this.obj1)
             
         } else {
             if (this.currentObj) {
                this.currentObj.material.color.set(0xffffff)
                this.currentObj = null
             }
-            this.scene.remove(this.obj1)
+            this.hoverPages[0].element.classList.remove("visible")
+            // this.scene.remove(this.obj1)
         }
     }
 }

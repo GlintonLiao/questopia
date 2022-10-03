@@ -1,9 +1,9 @@
 import * as THREE from 'three'
+import { EventDispatcher } from 'three'
 import Experience from '../Experience.js'
-import Raycaster from '../Raycaster.js'
 import World from '../World.js'
 
-export default class Screen
+export default class Screen extends EventDispatcher
 {
 
     experience: Experience
@@ -23,6 +23,7 @@ export default class Screen
 
     constructor(_mesh, _sourcePath)
     {
+        super()
         this.experience = new Experience()
         this.resources = this.experience.resources
         this.debug = this.experience.debug
@@ -64,6 +65,17 @@ export default class Screen
         this.model.mesh = this.mesh
         this.model.mesh.material = this.model.material
         this.scene.add(this.model.mesh)
+        
+    }
+
+    show() {
+        console.log('show');
+        
+        const projectPage = document.querySelector('.projects')
+        projectPage.classList.add('visible')
+        // disable event
+        window.removeEventListener('wheel', this.experience.navigation.view.onWheel)
+
         
     }
 
