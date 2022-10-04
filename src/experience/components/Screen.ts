@@ -69,14 +69,8 @@ export default class Screen extends EventDispatcher
     }
 
     show() {
-        console.log('show');
-        
         const projectPage = document.querySelector('.projects')
         projectPage.classList.add('visible')
-        // disable event
-        window.removeEventListener('wheel', this.experience.navigation.view.onWheel)
-
-        
     }
 
     update() {   

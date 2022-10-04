@@ -127,5 +127,4 @@ export default class Renderer {
         this.postProcess.composer.renderTarget1.dispose()
         this.postProcess.composer.renderTarget2.dispose()
     }
-
 }

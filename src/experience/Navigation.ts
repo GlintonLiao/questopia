@@ -163,14 +163,12 @@ export default class Navigation {
 
         // wheel
         this.view.onWheel = (_event: WheelEvent): void => {
-            _event.preventDefault()
-
             const normalized = normalizeWheel(_event)
             this.view.zoomIn(normalized.pixelY)
         }
         
-        window.addEventListener('mousewheel', this.view.onWheel, { passive: false })
-        window.addEventListener('wheel', this.view.onWheel, { passive: false })
+        this.targetElement.addEventListener('mousewheel', this.view.onWheel)
+        this.targetElement.addEventListener('wheel', this.view.onWheel)
     }
 
     update(): void {

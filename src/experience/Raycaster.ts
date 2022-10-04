@@ -1,29 +1,22 @@
 import * as THREE from 'three'
-import { Scene } from 'three'
 import Experience from './Experience'
 import World from './World'
-import { OutlinePass } from 'three/examples/jsm/postprocessing/OutlinePass.js'
-import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js'
 import Screen from './components/Screen'
 
 export default class Raycaster {
 
     experience: Experience
     world: World
-    scene: Scene
+    scene: THREE.Scene
     pointer: THREE.Vec2
     raycaster: THREE.Raycaster
-    screen: any
-    currentObj: any
-    outlinePass: OutlinePass
     camera: THREE.Camera
-    effectComposer: EffectComposer
-    chair: any
-    renderer: THREE.Renderer
-
+    
+    currentObj: any
     objs: any
     bigScreen: Screen
     smallScreen: Screen
+    targetElement: any
 
     hoverPages: any[]
     
@@ -34,7 +27,7 @@ export default class Raycaster {
         this.world = this.experience.world
         this.scene = this.experience.scene
         this.camera = this.experience.camera.instance
-        this.renderer = this.experience.renderer.instance
+        this.targetElement = this.experience.targetElement
 
         this.bigScreen = this.world.bigScreen
         this.smallScreen = this.world.smallScreen
@@ -56,21 +49,15 @@ export default class Raycaster {
         this.raycaster = new THREE.Raycaster()
         this.pointer = new THREE.Vector2()
         
-        window.addEventListener( 'pointermove', (e) => {
+        this.targetElement.addEventListener( 'pointermove', (e) => {
             this.pointer.x = ( e.clientX / window.innerWidth ) * 2 - 1;
             this.pointer.y = - ( e.clientY / window.innerHeight ) * 2 + 1;
         });
 
-        window.addEventListener('click', () => {
+        this.targetElement.addEventListener('click', () => {
             if (!this.currentObj) return
             if (this.currentObj.name === 'Cube349') this.bigScreen.show()
         })
-
-        // this.obj1 = new THREE.Mesh(
-        //     new THREE.SphereGeometry(0.1, 0.1, 0.1),
-        //     new THREE.MeshBasicMaterial({ color: '#ff0000' })
-        // )
-        // this.obj1.position.set(-1, 1, 1)
     }
 
     update(): void {

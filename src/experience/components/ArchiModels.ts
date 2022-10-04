@@ -1,10 +1,11 @@
-import Experience from "../Experience";
 import * as THREE from 'three'
+import Experience from "../Experience";
+import Resources from "../Resources";
 
 export default class ArchiModel {
 
     experience: Experience
-    resources: any
+    resources: Resources
     scene: THREE.Scene
     item: any
 
@@ -24,7 +25,7 @@ export default class ArchiModel {
         this.scene.add(this.item.model)
         this.item.material = new THREE.MeshBasicMaterial({ color: '#99b5ff'})
 
-        this.item.model.traverse((_child: { material: any }) => {
+        this.item.model.traverse((_child: { material: THREE.MeshBasicMaterial }) => {
             if (_child instanceof THREE.Mesh) {
                 _child.material = this.item.material
             }

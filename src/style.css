@@ -10,6 +10,7 @@ html,
 body
 {
     overflow: hidden;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .experience
@@ -52,15 +53,30 @@ body
 
 .projects {
     position: absolute;
-    visibility: hidden;
+    opacity: 0;
     width: 100vw;
     height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     background-color: rgba(0, 0, 0, 0.6);
     transition: all 0.3s;
-    z-index: -1;
+}
+
+.projects .header {
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    width: 70vw;
+    height: 10vh;
+    margin-bottom: 1rem;
+    margin-top: 3rem;
+}
+
+.title h1 {
+    color: rgb(213, 221, 228);
+    font-weight: 900;
+}
+
+.title p {
+    color: rgb(212, 221, 228);
 }
 
 .projects .container {
@@ -69,27 +85,46 @@ body
 }
 
 .projects .layout-grid {
-    width: 80vw;
-    height: 80vh;
+    width: 70vw;
+    height: 70vh;
     display: grid;
+    margin: auto;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto auto auto auto;
     justify-items: stretch;
     justify-content: stretch;
-    gap: 30px;
-    outline: lightcoral solid 1px;
+    gap: 1rem;
 }
 
 .container .item {
-    max-width: 500px;
-    height: 200px;
-    height: 1fr;
-    background-color: rgb(34, 85, 129);
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 1.5rem 1rem 1rem 2rem;
+    color: rgb(205, 205, 205);
+}
+
+.item-header {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.logo {
+    width: 3rem;
+    height: 3rem;
+}
+
+.link {
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+    justify-content: space-around
 }
 
 .projects.visible {
-    visibility: visible;
+    opacity: 1;
     z-index: 20;
+    backdrop-filter: blur(15px);
 }
 
 .info
@@ -111,5 +146,4 @@ body
 {
     color: white;
     text-decoration: none;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }

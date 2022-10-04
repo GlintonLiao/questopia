@@ -68,26 +68,26 @@ export default class World
         this.baked = new Baked()
     }
 
-    setRoom(): void {
-        this.room = {}
-        this.room.model = this.resources.items.roomModel.scene
-        this.scene.add(this.room.model)
-        this.room.texture = this.resources.items.bakedDayTexture
-        this.room.texture.encoding = THREE.sRGBEncoding
-        this.room.texture.flipY = false
-        this.room.material = new THREE.MeshBasicMaterial({ map: this.room.texture})
+    // setRoom(): void {
+    //     this.room = {}
+    //     this.room.model = this.resources.items.roomModel.scene
+    //     this.scene.add(this.room.model)
+    //     this.room.texture = this.resources.items.bakedDayTexture
+    //     this.room.texture.encoding = THREE.sRGBEncoding
+    //     this.room.texture.flipY = false
+    //     this.room.material = new THREE.MeshBasicMaterial({ map: this.room.texture})
 
-        console.log(this.room);
+    //     console.log(this.room);
         
-        this.room.model.traverse((_child: { material: any }) => {
-            if (_child instanceof THREE.Mesh) {
-                _child.material = this.room.material
-            }
-        })
+    //     this.room.model.traverse((_child: { material: any }) => {
+    //         if (_child instanceof THREE.Mesh) {
+    //             _child.material = this.room.material
+    //         }
+    //     })
 
-        const axesHelper = new THREE.AxesHelper( 5 );
-        this.scene.add( axesHelper );
-    }
+    //     const axesHelper = new THREE.AxesHelper( 5 );
+    //     this.scene.add( axesHelper );
+    // }
 
     setTitle(): void {
         this.title = new Title()
@@ -114,10 +114,10 @@ export default class World
         this.raycaster = new Raycaster()
     } 
 
-    resize() {
+    resize(): void {
     }
 
-    update() {
+    update(): void {
         if (this.chair) this.chair.update()
         if (this.coffeeSteam) this.coffeeSteam.update()
         if (this.bigScreen) this.bigScreen.update()
