@@ -71,6 +71,13 @@ export default class Screen extends EventDispatcher
     show() {
         const projectPage = document.querySelector('.projects')
         projectPage.classList.add('visible')
+
+        const closeBtn = document.querySelector(".close-btn")
+        const handle = () => {
+            projectPage.classList.remove('visible')
+            closeBtn.removeEventListener('click', handle)
+        }
+        closeBtn.addEventListener('click', handle)
     }
 
     update() {   

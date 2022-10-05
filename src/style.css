@@ -64,6 +64,7 @@ body
     margin: auto;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 70vw;
     height: 10vh;
     margin-bottom: 1rem;
@@ -77,6 +78,25 @@ body
 
 .title p {
     color: rgb(212, 221, 228);
+}
+
+button {
+    background-color: transparent;
+    border: 0;
+}
+
+.close-btn > button{
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.close-btn:hover {
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: rgba(94, 94, 94, 0.6);
 }
 
 .projects .container {
@@ -97,7 +117,7 @@ body
 }
 
 .container .item {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.05);
     padding: 1.5rem 1rem 1rem 2rem;
     color: rgb(205, 205, 205);
 }
@@ -113,6 +133,10 @@ body
     height: 3rem;
 }
 
+.item-description {
+    margin: 0.6rem 0.2rem;
+}
+
 .link {
     height: 2.5rem;
     display: flex;
@@ -124,6 +148,7 @@ body
 .projects.visible {
     opacity: 1;
     z-index: 20;
+    transition: all 0.3s;
     backdrop-filter: blur(15px);
 }
 
