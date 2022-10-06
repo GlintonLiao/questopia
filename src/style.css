@@ -10,7 +10,8 @@ html,
 body
 {
     overflow: hidden;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family:aktiv-grotesk, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 .experience
@@ -26,7 +27,6 @@ body
     left: 50%;
     opacity: 0;
     padding: 10px;
-    z-index: 10;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -40,6 +40,7 @@ body
 .programming.visible {
     opacity: 1;
     transform: scale(1, 1);
+    z-index: 8;
 }
 
 .programming .text {
@@ -57,7 +58,6 @@ body
     left: 50%;
     opacity: 0;
     padding: 10px;
-    z-index: 10;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -71,6 +71,7 @@ body
 .architecture.visible {
     opacity: 1;
     transform: scale(1, 1);
+    z-index: 8;
 }
 
 .architecture .text {
@@ -198,10 +199,30 @@ button {
     background-color: rgba(94, 94, 94, 0.6);
 }
 
+.prev-close-btn > button{
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.prev-close-btn:hover {
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: rgba(94, 94, 94, 0.6);
+}
+
 
 .container .item {
-    background-color: rgba(255, 255, 255, 0.05);
-    padding: 1.5rem 1rem 1rem 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    color: rgb(205, 205, 205);
+    transition: all 0.3s;
+}
+
+.container .item:hover {
+    padding: 1.5rem;
     color: rgb(205, 205, 205);
 }
 
@@ -217,15 +238,32 @@ button {
 }
 
 .item-description {
-    margin: 0.6rem 0.2rem;
+    margin: 0.1rem 0 1rem 0.3rem;
 }
 
 .link {
-    height: 2.5rem;
     display: flex;
     align-items: center;
-    margin-top: 1rem;
-    justify-content: space-around
+    justify-content: space-around;
+}
+
+.demo {
+    width: 100%;
+    height:3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+}
+
+.github {
+    width: 100%;
+    text-align: center;
+    background: black;
+}
+
+.demo:hover {
+    background-color: rgba(59, 167, 167, 0.5);
 }
 
 .info

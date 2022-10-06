@@ -10,7 +10,7 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
   <div class="header">
     <div class="title">
       <h1>Current Projects</h1>
-      <p>My Present as a programmer</p>
+      <p>My present as a programmer</p>
     </div>
     <div class="close-btn">
       <button><img src="/close.svg" alt="" /></button>
@@ -24,11 +24,12 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
           <h2 class="title">King of Bots</h2>
         </div>
         <div class="item-description">
-          An online racing game for people to interact
+          An online racing game
         </div>
         <div class="link">
-          <div class="demo"></div>
-          <div class="demo">Live</div>
+          <div class="demo">
+            <p>Live</p>
+          </div>
           <div class="github">Github</div>
         </div>
       </div>
@@ -117,10 +118,10 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
   <div class="prev-projects">
   <div class="header">
     <div class="title">
-      <h1>Current Projects</h1>
-      <p>My Present as a programmer</p>
+      <h1>Previous Projects</h1>
+      <p>My past as an architect</p>
     </div>
-    <div class="close-btn">
+    <div class="prev-close-btn">
       <button><img src="/close.svg" alt="" /></button>
     </div>
   </div>
@@ -129,10 +130,10 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
       <div class="item">
         <div class="item-header">
           <div class="logo"><img src="/kingofbots.svg" alt="" /></div>
-          <h2 class="title">King of Bots</h2>
+          <h3 class="title">King of Bots</h3>
         </div>
         <div class="item-description">
-          An online racing game for people to interact
+          An online racing game for people to interact using React and SpringBoot
         </div>
         <div class="link">
           <div class="demo"></div>
@@ -218,6 +219,7 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
           <div class="github"></div>
         </div>
       </div>
+    </div>
     </div>
 `;
 

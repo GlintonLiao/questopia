@@ -67,7 +67,7 @@ export default class Images extends EventDispatcher
         
         projectPage.classList.add('visible')
 
-        const closeBtn = document.querySelector(".close-btn")
+        const closeBtn = document.querySelector(".prev-close-btn")
         const handle = () => {
             projectPage.classList.remove('visible')
             closeBtn.removeEventListener('click', handle)

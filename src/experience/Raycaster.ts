@@ -42,7 +42,7 @@ export default class Raycaster {
                 element: document.querySelector('.programming')
             },
             {
-                position: new THREE.Vector3(-0.8, 1, 0.4),
+                position: new THREE.Vector3(0, 1.4, 0.3),
                 element: document.querySelector('.architecture')
             },
         ]
@@ -78,7 +78,7 @@ export default class Raycaster {
         if (intersects.length) {
             if (!this.currentObj) {
                 this.currentObj = intersects[0].object
-                this.currentObj.material.color.set("#347867")
+                this.currentObj.material.color.set("#AFF3F4")
                 
                 let idx = 1
                 if (this.currentObj.name === "Cube349" || 

@@ -117,9 +117,7 @@ export default class Baked
                     { label: 'Day/Night', min: 0, max: 1 }
                 )
                 .on('change', () => {
-                    this.room.material.uniforms.uNightMix.value 
-                    = this.images.material.uniforms.uNightMix.value 
-                    = this.mixed.value
+                    this.room.material.uniforms.uNightMix.value = this.mixed.value
                 })
 
             this.debugFolder
