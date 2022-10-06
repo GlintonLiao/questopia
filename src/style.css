@@ -28,10 +28,11 @@ body
     padding: 10px;
     z-index: 10;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     transform: scale(0, 0);
     justify-content: center;
-    background-color:rgba(0, 0, 0, 0.6);
+    background-color:rgba(0, 0, 0, 0.5);
     border-radius: 10px;
     transition: all 0.3s;
 }
@@ -42,13 +43,43 @@ body
 }
 
 .programming .text {
-    width: 150px;
-    height: 50px;
-    top: -50px;
-    left: -75px;
+    top: -50%;
+    left: -50%;
+    padding: 0.2rem 0.4rem;
     text-align: center;
     color: rgb(255, 255, 255);
-    outline: lightblue solid 1px;
+    user-select: none;
+}
+
+.architecture {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    opacity: 0;
+    padding: 10px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transform: scale(0, 0);
+    justify-content: center;
+    background-color:rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    transition: all 0.3s;
+}
+
+.architecture.visible {
+    opacity: 1;
+    transform: scale(1, 1);
+}
+
+.architecture .text {
+    top: -50%;
+    left: -50%;
+    padding: 0.2rem 0.4rem;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    user-select: none;
 }
 
 .projects {
@@ -69,6 +100,74 @@ body
     height: 10vh;
     margin-bottom: 1rem;
     margin-top: 3rem;
+}
+
+.projects .container {
+    display: block;
+    overflow: scroll;
+}
+
+.projects .layout-grid {
+    width: 70vw;
+    height: 70vh;
+    display: grid;
+    margin: auto;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto auto;
+    justify-items: stretch;
+    justify-content: stretch;
+    gap: 1rem;
+}
+
+.projects.visible {
+    opacity: 1;
+    z-index: 20;
+    backdrop-filter: blur(15px);
+    transition: all 0.3s;
+}
+
+.prev-projects {
+    position: absolute;
+    opacity: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    transition: all 0.3s;
+}
+
+.prev-projects .header {
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 70vw;
+    height: 10vh;
+    margin-bottom: 1rem;
+    margin-top: 3rem;
+}
+
+.prev-projects .container {
+    display: block;
+    overflow: scroll;
+}
+
+.prev-projects .layout-grid {
+    width: 70vw;
+    height: 70vh;
+    display: grid;
+    margin: auto;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto auto;
+    justify-items: stretch;
+    justify-content: stretch;
+    gap: 1rem;
+}
+
+.prev-projects.visible {
+    opacity: 1;
+    z-index: 20;
+    backdrop-filter: blur(15px);
+    transition: all 0.3s;
 }
 
 .title h1 {
@@ -99,22 +198,6 @@ button {
     background-color: rgba(94, 94, 94, 0.6);
 }
 
-.projects .container {
-    display: block;
-    overflow: scroll;
-}
-
-.projects .layout-grid {
-    width: 70vw;
-    height: 70vh;
-    display: grid;
-    margin: auto;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto auto auto;
-    justify-items: stretch;
-    justify-content: stretch;
-    gap: 1rem;
-}
 
 .container .item {
     background-color: rgba(255, 255, 255, 0.05);
@@ -143,13 +226,6 @@ button {
     align-items: center;
     margin-top: 1rem;
     justify-content: space-around
-}
-
-.projects.visible {
-    opacity: 1;
-    z-index: 20;
-    transition: all 0.3s;
-    backdrop-filter: blur(15px);
 }
 
 .info

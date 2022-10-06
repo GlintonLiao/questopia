@@ -8,6 +8,7 @@ import Screen from './components/Screen.js'
 import RotatingChair from './components/RotatingChair.js'
 import CoffeeSteam from './components/CoffeeSteam.js'
 import Raycaster from './Raycaster.js'
+import Images from './components/Images.js'
 
 export default class World
 {
@@ -23,6 +24,8 @@ export default class World
 
     bigScreen: Screen
     smallScreen: Screen
+
+    images: Images
 
     chair: RotatingChair
     coffeeSteam: CoffeeSteam
@@ -46,6 +49,7 @@ export default class World
                 this.setTitle()
                 this.setArchiModel()
                 this.setScreens()
+                this.setImages()
                 this.setChair()
                 this.setCoffee()
                 this.setRaycaster()
@@ -95,6 +99,10 @@ export default class World
 
     setArchiModel(): void {
         this.archiModel = new ArchiModel()
+    }
+
+    setImages(): void {
+        this.images = new Images()
     }
 
     setScreens(): void {

@@ -43,7 +43,6 @@ export default class Baked
         }
 
         this.setRoom()
-        this.setImages()
         this.setDebug()
     }
 
@@ -106,38 +105,6 @@ export default class Baked
 
         this.scene.add(this.room.model)
         
-    }
-
-    setImages(): void {
-        
-        this.images = {}
-        this.images.model = this.experience.resources.items.imagesModel.scene
-        this.images.imagesDayTexture = this.experience.resources.items.imagesDayTexture
-        this.images.imagesDayTexture.flipY = false;
-        this.images.imagesNightTexture = this.experience.resources.items.imagesNightTexture
-        this.images.imagesNightTexture.flipY = false;
-
-        this.images.material = new THREE.ShaderMaterial({
-            uniforms: {
-                uBakedDayTexture: { value: this.images.imagesDayTexture },
-                uBakedNightTexture: { value: this.images.imagesNightTexture },
-                uLightMapTexture: { value: this.images.imagesMapTexture },
-
-                uNightMix: { value: this.mixed.value },
-            },
-            vertexShader: vertexShader,
-            fragmentShader: fragmentShader
-        })
-
-        this.images.model.traverse((_child) =>
-        {
-            if(_child instanceof THREE.Mesh)
-            {
-                _child.material = this.images.material
-            }
-        })
-
-        this.scene.add(this.images.model)
     }
 
     setDebug(): void {
