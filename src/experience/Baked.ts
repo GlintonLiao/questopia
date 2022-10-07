@@ -32,8 +32,8 @@ export default class Baked {
 			})
 		}
 
-        // colors
-        this.colors = {
+		// colors
+		this.colors = {
 			Screen: "#99C2DB",
 			Lamp: "#FFD05F",
 			Shelf: "#9d5bb0",

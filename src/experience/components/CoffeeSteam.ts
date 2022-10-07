@@ -10,9 +10,9 @@ import fragmentShader from "../shaders/coffeeSteam/fragment.glsl"
 export default class CoffeeSteam {
 	experience: Experience
 	resources: Resources
-	debug: any
 	scene: THREE.Scene
 	time: Time
+	debug: any
 
 	debugFolder: any
 	model: any
