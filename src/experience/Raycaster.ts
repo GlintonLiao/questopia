@@ -41,7 +41,7 @@ export default class Raycaster {
                 element: document.querySelector('.programming')
             },
             {
-                position: new THREE.Vector3(0, 1.4, 0.3),
+                position: new THREE.Vector3(-0.6, 1, 0),
                 element: document.querySelector('.architecture')
             },
         ]
@@ -70,22 +70,21 @@ export default class Raycaster {
     }
 
     update(): void {
-        this.raycaster.setFromCamera(this.pointer, this.experience.camera.instance)
 
+        this.raycaster.setFromCamera(this.pointer, this.experience.camera.instance)
         const intersects = this.raycaster.intersectObjects(this.objs)
         
         if (intersects.length) {
             if (!this.currentObj) {
                 this.currentObj = intersects[0].object
-                this.currentObj.material.color.set("#AFF3F4")
+                this.currentObj.material.color.set("#ffbb33")
                 
                 let idx = 1
                 if (this.currentObj.name === "Cube349" || 
-                    this.currentObj.name == "Cube346") idx = 0
+                    this.currentObj.name === "Cube346") idx = 0
                 
                 const screenPosition = this.hoverPages[idx].position.clone()
                 screenPosition.project(this.experience.camera.instance)
-                console.log(this.hoverPages[idx].element);
     
                 this.hoverPages[idx].element.classList.add("visible")
                 const translateX = screenPosition.x * this.experience.sizes.width * 0.5

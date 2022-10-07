@@ -24,17 +24,7 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
             <img src="/kingofbots.svg" class="icon" alt="" />
           </div>
           <div class="description">
-            <h3>Pendulum Parking</h3>
-            <p>Maximize the value of idle parking space</p>
-          </div>
-        </a>
-
-        <a href="./Pendulum Parking.html" class="card">
-          <div class="svg">
-            <img src="/kingofbots.svg" class="icon" alt="" />
-          </div>
-          <div class="description">
-            <h3>Pendulum Parking</h3>
+            <h3>King of Bots</h3>
             <p>Maximize the value of idle parking space</p>
           </div>
         </a>
@@ -125,98 +115,87 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
     </div>
     <div class="container">
       <div class="layout-grid">
-        <div class="item">
-          <div class="item-header">
-            <div class="logo"><img src="/kingofbots.svg" alt="" /></div>
-            <h3 class="title">King of Bots</h3>
+
+        <a href="./Pendulum Parking.html" class="card">
+          <div class="svg" style="background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);">
+            <img src="/kingofbots.svg" class="icon" alt="" />
           </div>
-          <div class="item-description">
-            An online racing game for people to interact using React and SpringBoot
+          <div class="description">
+            <h3>King of Bots</h3>
+            <p>Maximize the value of idle parking space</p>
           </div>
-          <div class="link">
-            <div class="demo"></div>
-            <div class="demo">Live</div>
-            <div class="github">Github</div>
+        </a>
+
+        <a href="./Pendulum Parking.html" class="card">
+          <div class="svg">
+            <img src="/kingofbots.svg" class="icon" alt="" />
           </div>
-        </div>
-        <div class="item">
-          <div class="item-header">
-            <div class="logo"></div>
-            <div class="title"></div>
+          <div class="description">
+            <h3>Pendulum Parking</h3>
+            <p>Maximize the value of idle parking space</p>
           </div>
-          <div class="item-description">
-            An online racing game for people to interact
+        </a>
+
+        <a href="./Pendulum Parking.html" class="card">
+          <div class="svg">
+            <img src="/kingofbots.svg" class="icon" alt="" />
           </div>
-          <div class="link">
-            <div class="demo"></div>
-            <div class="github"></div>
+          <div class="description">
+            <h3>Pendulum Parking</h3>
+            <p>Maximize the value of idle parking space</p>
           </div>
-        </div>
-        <div class="item">
-          <div class="item-header">
-            <div class="logo"></div>
-            <div class="title"></div>
+        </a>
+
+        <a href="./Pendulum Parking.html" class="card">
+          <div class="svg">
+            <img src="/kingofbots.svg" class="icon" alt="" />
           </div>
-          <div class="item-description">
-            An online racing game for people to interact
+          <div class="description">
+            <h3>Pendulum Parking</h3>
+            <p>Maximize the value of idle parking space</p>
           </div>
-          <div class="link">
-            <div class="demo"></div>
-            <div class="github"></div>
+        </a>
+
+        <a href="./Pendulum Parking.html" class="card">
+          <div class="svg">
+            <img src="/kingofbots.svg" class="icon" alt="" />
           </div>
-        </div>
-        <div class="item">
-          <div class="item-header">
-            <div class="logo"></div>
-            <div class="title"></div>
+          <div class="description">
+            <h3>Pendulum Parking</h3>
+            <p>Maximize the value of idle parking space</p>
           </div>
-          <div class="item-description">
-            An online racing game for people to interact
+        </a>
+
+        <a href="./Pendulum Parking.html" class="card">
+          <div class="svg">
+            <img src="/kingofbots.svg" class="icon" alt="" />
           </div>
-          <div class="link">
-            <div class="demo"></div>
-            <div class="github"></div>
+          <div class="description">
+            <h3>Pendulum Parking</h3>
+            <p>Maximize the value of idle parking space</p>
           </div>
-        </div>
-        <div class="item">
-          <div class="item-header">
-            <div class="logo"></div>
-            <div class="title"></div>
+        </a>
+
+        <a href="./Pendulum Parking.html" class="card">
+          <div class="svg">
+            <img src="/kingofbots.svg" class="icon" alt="" />
           </div>
-          <div class="item-description">
-            An online racing game for people to interact
+          <div class="description">
+            <h3>Pendulum Parking</h3>
+            <p>Maximize the value of idle parking space</p>
           </div>
-          <div class="link">
-            <div class="demo"></div>
-            <div class="github"></div>
+        </a>
+
+        <a href="./Pendulum Parking.html" class="card">
+          <div class="svg">
+            <img src="/kingofbots.svg" class="icon" alt="" />
           </div>
-        </div>
-        <div class="item">
-          <div class="item-header">
-            <div class="logo"></div>
-            <div class="title"></div>
+          <div class="description">
+            <h3>Pendulum Parking</h3>
+            <p>Maximize the value of idle parking space</p>
           </div>
-          <div class="item-description">
-            An online racing game for people to interact
-          </div>
-          <div class="link">
-            <div class="demo"></div>
-            <div class="github"></div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="item-header">
-            <div class="logo"></div>
-            <div class="title"></div>
-          </div>
-          <div class="item-description">
-            An online racing game for people to interact
-          </div>
-          <div class="link">
-            <div class="demo"></div>
-            <div class="github"></div>
-          </div>
-        </div>
+        </a>
+    
       </div>
     </div>
   </div>

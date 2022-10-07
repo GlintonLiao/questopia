@@ -32,7 +32,7 @@ export default class CoffeeSteam
         if(this.debug)
         {
             this.debugFolder = this.debug.addFolder({
-                title: 'coffeeSteam',
+                title: 'Coffee steam',
                 expanded: false
             })
         }
@@ -66,12 +66,13 @@ export default class CoffeeSteam
         this.model.mesh.material = this.model.material
         this.scene.add(this.model.mesh)
 
-        if(this.debug)
+        if (this.debug)
         {
             this.debugFolder.addInput(
                 this.model,
                 'color',
                 {
+                    label: 'Color',
                     view: 'color'
                 }
             )
@@ -85,7 +86,7 @@ export default class CoffeeSteam
                 this.model.material.uniforms.uTimeFrequency,
                 'value',
                 {
-                    label: 'uTimeFrequency', min: 0.0001, max: 0.001, step: 0.0001
+                    label: 'Frequency', min: 0.0001, max: 0.001, step: 0.0001
                 }
             )
             
