@@ -1,125 +1,125 @@
-import * as THREE from 'three'
-import Baked from './Baked.js'
-import ArchiModel from './components/ArchiModels.js'
-import Title from './components/Title.js'
-import Experience, { Config } from './Experience.js'
-import Resources from './Resources.js'
-import Screen from './components/Screen.js'
-import RotatingChair from './components/RotatingChair.js'
-import CoffeeSteam from './components/CoffeeSteam.js'
-import Raycaster from './Raycaster.js'
-import Images from './components/Images.js'
+import * as THREE from "three"
+import Baked from "./Baked.js"
+import ArchiModel from "./components/ArchiModels.js"
+import Title from "./components/Title.js"
+import Experience, { Config } from "./Experience.js"
+import Resources from "./Resources.js"
+import Screen from "./components/Screen.js"
+import RotatingChair from "./components/RotatingChair.js"
+import CoffeeSteam from "./components/CoffeeSteam.js"
+import Raycaster from "./Raycaster.js"
+import Images from "./components/Images.js"
 
-export default class World
-{
-    experience: Experience
-    config: Config
-    scene: THREE.Scene
-    resources: Resources
+export default class World {
+	experience: Experience
+	config: Config
+	scene: THREE.Scene
+	resources: Resources
 
-    room: any = {}
-    title: any = {}
-    archiModel: ArchiModel
-    baked: Baked
+	room: any = {}
+	title: any = {}
+	archiModel: ArchiModel
+	baked: Baked
 
-    bigScreen: Screen
-    smallScreen: Screen
+	bigScreen: Screen
+	smallScreen: Screen
 
-    images: Images
+	images: Images
 
-    chair: RotatingChair
-    coffeeSteam: CoffeeSteam
+	chair: RotatingChair
+	coffeeSteam: CoffeeSteam
 
-    raycaster: any
+	raycaster: any
 
-    constructor(_options?: any)
-    {
-        this.experience = new Experience()
-        this.config = this.experience.config
-        this.scene = this.experience.scene
-        this.resources = this.experience.resources
-        
-        this.resources.on('groupEnd', (_group) =>
-        {
-            if(_group.name === 'base')
-            {
-                // this.setRoom()
-                this.setBaked()
-                this.setTitle()
-                this.setArchiModel()
-                this.setScreens()
-                this.setImages()
-                this.setChair()
-                this.setCoffee()
-                this.setRaycaster()
-            }
-        })
-    }
+	constructor(_options?: any) {
+		this.experience = new Experience()
+		this.config = this.experience.config
+		this.scene = this.experience.scene
+		this.resources = this.experience.resources
 
-    setBaked(): void {
-        this.baked = new Baked()
-    }
+		this.resources.on("groupEnd", (_group) => {
+			if (_group.name === "base") {
+				// this.setRoom()
+				this.setBaked()
+				this.setTitle()
+				this.setArchiModel()
+				this.setScreens()
+				this.setImages()
+				this.setChair()
+				this.setCoffee()
+				this.setRaycaster()
+			}
+		})
+	}
 
-    // setRoom(): void {
-    //     this.room = {}
-    //     this.room.model = this.resources.items.roomModel.scene
-    //     this.scene.add(this.room.model)
-    //     this.room.texture = this.resources.items.bakedDayTexture
-    //     this.room.texture.encoding = THREE.sRGBEncoding
-    //     this.room.texture.flipY = false
-    //     this.room.material = new THREE.MeshBasicMaterial({ map: this.room.texture})
+	setBaked(): void {
+		this.baked = new Baked()
+	}
 
-    //     console.log(this.room);
-        
-    //     this.room.model.traverse((_child: { material: any }) => {
-    //         if (_child instanceof THREE.Mesh) {
-    //             _child.material = this.room.material
-    //         }
-    //     })
+	// setRoom(): void {
+	//     this.room = {}
+	//     this.room.model = this.resources.items.roomModel.scene
+	//     this.scene.add(this.room.model)
+	//     this.room.texture = this.resources.items.bakedDayTexture
+	//     this.room.texture.encoding = THREE.sRGBEncoding
+	//     this.room.texture.flipY = false
+	//     this.room.material = new THREE.MeshBasicMaterial({ map: this.room.texture})
 
-    //     const axesHelper = new THREE.AxesHelper( 5 );
-    //     this.scene.add( axesHelper );
-    // }
+	//     console.log(this.room);
 
-    setTitle(): void {
-        this.title = new Title()
-    }
+	//     this.room.model.traverse((_child: { material: any }) => {
+	//         if (_child instanceof THREE.Mesh) {
+	//             _child.material = this.room.material
+	//         }
+	//     })
 
-    setArchiModel(): void {
-        this.archiModel = new ArchiModel()
-    }
+	//     const axesHelper = new THREE.AxesHelper( 5 );
+	//     this.scene.add( axesHelper );
+	// }
 
-    setImages(): void {
-        this.images = new Images()
-    }
+	setTitle(): void {
+		this.title = new Title()
+	}
 
-    setScreens(): void {
-        this.bigScreen = new Screen(this.experience.resources.items.bigScreenModel.scene.children[0], '/assets/bigScreenImage.jpg')
-        this.smallScreen = new Screen(this.experience.resources.items.smallScreenModel.scene.children[0], '/assets/smallScreenImage.jpg')
-    }
+	setArchiModel(): void {
+		this.archiModel = new ArchiModel()
+	}
 
-    setChair(): void {
-        this.chair = new RotatingChair()
-    }
+	setImages(): void {
+		this.images = new Images()
+	}
 
-    setCoffee(): void {
-        this.coffeeSteam = new CoffeeSteam()
-    }
+	setScreens(): void {
+		this.bigScreen = new Screen(
+			this.experience.resources.items.bigScreenModel.scene.children[0],
+			"/assets/bigScreenImage.jpg"
+		)
+		this.smallScreen = new Screen(
+			this.experience.resources.items.smallScreenModel.scene.children[0],
+			"/assets/smallScreenImage.jpg"
+		)
+	}
 
-    setRaycaster(): void {
-        this.raycaster = new Raycaster()
-    } 
+	setChair(): void {
+		this.chair = new RotatingChair()
+	}
 
-    resize(): void {
-    }
+	setCoffee(): void {
+		this.coffeeSteam = new CoffeeSteam()
+	}
 
-    update(): void {
-        if (this.chair) this.chair.update()
-        if (this.coffeeSteam) this.coffeeSteam.update()
-        if (this.bigScreen) this.bigScreen.update()
-        if (this.raycaster) this.raycaster.update()
-    }
+	setRaycaster(): void {
+		this.raycaster = new Raycaster()
+	}
 
-    destroy() {
-    }
+	resize(): void {}
+
+	update(): void {
+		if (this.chair) this.chair.update()
+		if (this.coffeeSteam) this.coffeeSteam.update()
+		if (this.bigScreen) this.bigScreen.update()
+		if (this.raycaster) this.raycaster.update()
+	}
+
+	destroy() {}
 }

@@ -1,9 +1,9 @@
-import "./style.css";
-import Experience from "./experience/Experience";
+import "./style.css"
+import Experience from "./experience/Experience"
 
 const experience = new Experience({
-  targetElement: document.querySelector<HTMLDivElement>(".experience"),
-});
+	targetElement: document.querySelector<HTMLDivElement>(".experience"),
+})
 
 document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
   <div class="projects">
@@ -199,6 +199,4 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
       </div>
     </div>
   </div>
-`;
-
-// setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+`

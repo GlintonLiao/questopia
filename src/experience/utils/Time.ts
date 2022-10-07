@@ -1,43 +1,41 @@
-import EventEmitter from './EventEmitter'
+import EventEmitter from "./EventEmitter"
 
-export default class Time extends EventEmitter
-{
-    start: number
-    current: number
-    elapsed: number
-    delta: number
-    playing: boolean
-    ticker: number = 0
+export default class Time extends EventEmitter {
+	start: number
+	current: number
+	elapsed: number
+	delta: number
+	playing: boolean
+	ticker: number = 0
 
-    constructor() {
-        
-        super()
-        
-        this.start = Date.now()
-        this.current = this.start
-        this.elapsed = 0
-        this.delta = 16
-        this.playing = true
+	constructor() {
+		super()
 
-        this.tick = this.tick.bind(this)
-        this.tick()
-    }
+		this.start = Date.now()
+		this.current = this.start
+		this.elapsed = 0
+		this.delta = 16
+		this.playing = true
 
-    tick(): void {
-        this.ticker = window.requestAnimationFrame(this.tick);
+		this.tick = this.tick.bind(this)
+		this.tick()
+	}
 
-        const current = Date.now()
+	tick(): void {
+		this.ticker = window.requestAnimationFrame(this.tick)
 
-        this.delta = current - this.current
-        this.elapsed += this.playing ? this.delta : 0
-        this.current = current
+		const current = Date.now()
 
-        if (this.delta > 60) this.delta = 60
-        if (this.playing) this.trigger('tick')
-    }
+		this.delta = current - this.current
+		this.elapsed += this.playing ? this.delta : 0
+		this.current = current
 
-    // stop
-    stop(): void {
-        window.cancelAnimationFrame(this.ticker);
-    }
+		if (this.delta > 60) this.delta = 60
+		if (this.playing) this.trigger("tick")
+	}
+
+	// stop
+	stop(): void {
+		window.cancelAnimationFrame(this.ticker)
+	}
 }
