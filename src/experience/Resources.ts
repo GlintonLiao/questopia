@@ -3,6 +3,7 @@ import EventEmitter from "./utils/EventEmitter";
 import Loader from "./utils/Loader";
 
 export default class Resources extends EventEmitter {
+  
   items: any;
   loader: Loader;
   groups: any;

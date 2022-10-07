@@ -21,7 +21,6 @@ export default class Raycaster {
 
     hoverPages: any[]
     
-
     constructor() {
 
         this.experience = new Experience()
