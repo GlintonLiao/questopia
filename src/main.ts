@@ -249,3 +249,5 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
 
   </div>
 `
+
+export { experience }
