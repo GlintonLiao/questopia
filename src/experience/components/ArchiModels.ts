@@ -6,7 +6,11 @@ export default class ArchiModel {
 	experience: Experience
 	resources: Resources
 	scene: THREE.Scene
-	item: any
+
+	item: {
+		model?: THREE.Mesh
+		material?: THREE.MeshBasicMaterial
+	}
 
 	constructor() {
 		this.experience = new Experience()
@@ -22,12 +26,10 @@ export default class ArchiModel {
 		this.scene.add(this.item.model)
 		this.item.material = new THREE.MeshBasicMaterial({ color: "#99b5ff" })
 
-		this.item.model.traverse(
-			(_child: { material: THREE.MeshBasicMaterial }) => {
-				if (_child instanceof THREE.Mesh) {
-					_child.material = this.item.material
-				}
+		this.item.model.traverse((_child: THREE.Object3D) => {
+			if (_child instanceof THREE.Mesh) {
+				_child.material = this.item.material
 			}
-		)
+		})
 	}
 }

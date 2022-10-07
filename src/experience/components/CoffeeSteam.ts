@@ -35,12 +35,11 @@ export default class CoffeeSteam {
 		this.setModel()
 	}
 
-	setModel() {
+	setModel(): void {
 		this.model = {}
-
 		this.model.color = "#ffffff"
 
-		// Material
+		// material
 		this.model.material = new THREE.ShaderMaterial({
 			transparent: true,
 			depthWrite: false,
@@ -54,12 +53,13 @@ export default class CoffeeSteam {
 			},
 		})
 
-		// Mesh
+		// mesh
 		this.model.mesh =
 			this.resources.items.coffeeSteamModel.scene.children[0]
 		this.model.mesh.material = this.model.material
 		this.scene.add(this.model.mesh)
 
+		// debug
 		if (this.debug) {
 			this.debugFolder
 				.addInput(this.model, "color", {
@@ -105,7 +105,7 @@ export default class CoffeeSteam {
 		}
 	}
 
-	update() {
+	update(): void {
 		this.model.material.uniforms.uTime.value = this.time.elapsed
 	}
 }

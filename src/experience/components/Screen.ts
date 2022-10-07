@@ -1,33 +1,24 @@
 import * as THREE from "three"
 
 import Experience from "../Experience.js"
-import Resources from "../Resources.js"
-import World from "../World.js"
 
 export default class Screen extends THREE.EventDispatcher {
 	experience: Experience
-	resources: Resources
 	scene: THREE.Scene
-	world: World
-	debug: any
-	camera: THREE.PerspectiveCamera
 
 	mesh: THREE.Mesh
 	sourcePath: string
 
-	model: any
-	raycaster: THREE.Raycaster
-	pointer: THREE.Vec2
+	model: {
+		mesh?: THREE.Mesh;
+		texture?: THREE.Texture;
+		material?: THREE.MeshBasicMaterial
+	}
 
 	constructor(_mesh, _sourcePath) {
 		super()
 		this.experience = new Experience()
-		this.resources = this.experience.resources
-		this.debug = this.experience.debug
 		this.scene = this.experience.scene
-		this.world = this.experience.world
-		this.raycaster = this.world.raycaster
-		this.camera = this.experience.camera.instance
 
 		this.mesh = _mesh
 		this.sourcePath = _sourcePath
@@ -35,7 +26,7 @@ export default class Screen extends THREE.EventDispatcher {
 		this.setModel()
 	}
 
-	setModel() {
+	setModel(): void {
 		this.model = {}
 
 		// // Element
@@ -63,11 +54,11 @@ export default class Screen extends THREE.EventDispatcher {
 		this.scene.add(this.model.mesh)
 	}
 
-	show() {
-		const projectPage = document.querySelector(".projects")
+	show(): void {
+		const projectPage: HTMLDivElement = document.querySelector(".projects")
 		projectPage.classList.add("visible")
 
-		const closeBtn = document.querySelector(".close-btn")
+		const closeBtn: HTMLDivElement = document.querySelector(".close-btn")
 		const handle = () => {
 			projectPage.classList.remove("visible")
 			closeBtn.removeEventListener("click", handle)

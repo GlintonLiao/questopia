@@ -6,7 +6,11 @@ export default class Title {
 	experience: Experience
 	resources: Resources
 	scene: THREE.Scene
-	item: any
+
+	item: {
+		model?: THREE.Mesh
+		material?: THREE.MeshBasicMaterial
+	}
 
 	constructor() {
 		this.experience = new Experience()
@@ -22,7 +26,7 @@ export default class Title {
 		this.scene.add(this.item.model)
 		this.item.material = new THREE.MeshBasicMaterial({ color: "#C1D2FF" })
 
-		this.item.model.traverse((_child: { material: any }) => {
+		this.item.model.traverse((_child: THREE.Object3D) => {
 			if (_child instanceof THREE.Mesh) {
 				_child.material = this.item.material
 			}
