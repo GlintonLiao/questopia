@@ -15,7 +15,6 @@ export default [
             { name: 'bakedDayTexture', source: '/assets/bakedDayTexture.jpg', type: 'texture'},
             { name: 'imagesDayTexture', source: '/assets/imagesDayTexture.jpg', type: 'texture'},
             { name: 'imagesNightTexture', source: '/assets/imagesNightTexture.jpg', type: 'texture'},
-            { name: 'imagesMapTexture', source: '/assets/imagesMap.jpg', type: 'texture'},
             { name: 'lightMapTexture', source: '/assets/lightMapTexture.jpg', type: 'texture'},
         ]
     }
