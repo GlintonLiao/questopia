@@ -284,6 +284,18 @@ button {
     background-color: rgba(256, 256, 256, 0.1);
     padding: 10px;
     border-radius: 5px;
+    user-select: none;
+}
+
+.control {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    text-align: left;
+    background-color: rgba(256, 256, 256, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+    user-select: none;
 }
 
 .info:hover {
