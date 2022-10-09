@@ -11,115 +11,115 @@ import Raycaster from "./Raycaster.js"
 import Images from "./components/Images.js"
 
 export default class World {
-	experience: Experience
-	config: Config
-	scene: THREE.Scene
-	resources: Resources
+    experience: Experience
+    config: Config
+    scene: THREE.Scene
+    resources: Resources
 
-	room: any = {}
-	title: any = {}
-	archiModel: ArchiModel
-	baked: Baked
+    room: any = {}
+    title: any = {}
+    archiModel: ArchiModel
+    baked: Baked
 
-	bigScreen: Screen
-	smallScreen: Screen
+    bigScreen: Screen
+    smallScreen: Screen
 
-	images: Images
+    images: Images
 
-	chair: RotatingChair
-	coffeeSteam: CoffeeSteam
+    chair: RotatingChair
+    coffeeSteam: CoffeeSteam
 
-	raycaster: any
+    raycaster: any
 
-	constructor(_options?: any) {
-		this.experience = new Experience()
-		this.config = this.experience.config
-		this.scene = this.experience.scene
-		this.resources = this.experience.resources
+    constructor(_options?: any) {
+        this.experience = new Experience()
+        this.config = this.experience.config
+        this.scene = this.experience.scene
+        this.resources = this.experience.resources
 
-		this.resources.on("groupEnd", (_group) => {
-			if (_group.name === "base") {
-				// this.setRoom()
-				this.setBaked()
-				this.setTitle()
-				this.setArchiModel()
-				this.setScreens()
-				this.setImages()
-				this.setChair()
-				this.setCoffee()
-				this.setRaycaster()
-			}
-		})
-	}
+        this.resources.on("groupEnd", (_group) => {
+            if (_group.name === "base") {
+                // this.setRoom()
+                this.setBaked()
+                this.setTitle()
+                this.setArchiModel()
+                this.setScreens()
+                this.setImages()
+                this.setChair()
+                this.setCoffee()
+                this.setRaycaster()
+            }
+        })
+    }
 
-	setBaked(): void {
-		this.baked = new Baked()
-	}
+    setBaked(): void {
+        this.baked = new Baked()
+    }
 
-	// setRoom(): void {
-	//     this.room = {}
-	//     this.room.model = this.resources.items.roomModel.scene
-	//     this.scene.add(this.room.model)
-	//     this.room.texture = this.resources.items.bakedDayTexture
-	//     this.room.texture.encoding = THREE.sRGBEncoding
-	//     this.room.texture.flipY = false
-	//     this.room.material = new THREE.MeshBasicMaterial({ map: this.room.texture})
+    // setRoom(): void {
+    //     this.room = {}
+    //     this.room.model = this.resources.items.roomModel.scene
+    //     this.scene.add(this.room.model)
+    //     this.room.texture = this.resources.items.bakedDayTexture
+    //     this.room.texture.encoding = THREE.sRGBEncoding
+    //     this.room.texture.flipY = false
+    //     this.room.material = new THREE.MeshBasicMaterial({ map: this.room.texture})
 
-	//     console.log(this.room);
+    //     console.log(this.room);
 
-	//     this.room.model.traverse((_child: { material: any }) => {
-	//         if (_child instanceof THREE.Mesh) {
-	//             _child.material = this.room.material
-	//         }
-	//     })
+    //     this.room.model.traverse((_child: { material: any }) => {
+    //         if (_child instanceof THREE.Mesh) {
+    //             _child.material = this.room.material
+    //         }
+    //     })
 
-	//     const axesHelper = new THREE.AxesHelper( 5 );
-	//     this.scene.add( axesHelper );
-	// }
+    //     const axesHelper = new THREE.AxesHelper( 5 );
+    //     this.scene.add( axesHelper );
+    // }
 
-	setTitle(): void {
-		this.title = new Title()
-	}
+    setTitle(): void {
+        this.title = new Title()
+    }
 
-	setArchiModel(): void {
-		this.archiModel = new ArchiModel()
-	}
+    setArchiModel(): void {
+        this.archiModel = new ArchiModel()
+    }
 
-	setImages(): void {
-		this.images = new Images()
-	}
+    setImages(): void {
+        this.images = new Images()
+    }
 
-	setScreens(): void {
-		this.bigScreen = new Screen(
-			this.experience.resources.items.bigScreenModel.scene.children[0],
-			"/assets/bigScreenImage.jpg"
-		)
-		this.smallScreen = new Screen(
-			this.experience.resources.items.smallScreenModel.scene.children[0],
-			"/assets/smallScreenImage.jpg"
-		)
-	}
+    setScreens(): void {
+        this.bigScreen = new Screen(
+            this.experience.resources.items.bigScreenModel.scene.children[0],
+            "/assets/bigScreenImage.jpg"
+        )
+        this.smallScreen = new Screen(
+            this.experience.resources.items.smallScreenModel.scene.children[0],
+            "/assets/smallScreenImage.jpg"
+        )
+    }
 
-	setChair(): void {
-		this.chair = new RotatingChair()
-	}
+    setChair(): void {
+        this.chair = new RotatingChair()
+    }
 
-	setCoffee(): void {
-		this.coffeeSteam = new CoffeeSteam()
-	}
+    setCoffee(): void {
+        this.coffeeSteam = new CoffeeSteam()
+    }
 
-	setRaycaster(): void {
-		this.raycaster = new Raycaster()
-	}
+    setRaycaster(): void {
+        this.raycaster = new Raycaster()
+    }
 
-	resize(): void {}
+    resize(): void {}
 
-	update(): void {
-		if (this.chair) this.chair.update()
-		if (this.coffeeSteam) this.coffeeSteam.update()
-		if (this.bigScreen) this.bigScreen.update()
-		if (this.raycaster) this.raycaster.update()
-	}
+    update(): void {
+        if (this.chair) this.chair.update()
+        if (this.coffeeSteam) this.coffeeSteam.update()
+        if (this.bigScreen) this.bigScreen.update()
+        if (this.raycaster) this.raycaster.update()
+    }
 
-	destroy() {}
+    destroy() {}
 }

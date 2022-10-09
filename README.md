@@ -52,7 +52,7 @@ If you want to build your own projects using same settings as mine, you can refe
   
   ![perf enhancement](https://user-images.githubusercontent.com/37015336/194730982-958be2f5-5fb3-4383-ad12-f3faf56251d6.jpg)
   
-  After deleteting the redundent faces, plus some overlaping faces, **the model size went from 18 MB to 3 MB, which improved by 88%**
+  After deleting the redundant faces, plus some overlapping faces, **the model size went from 18 MB to 3 MB, which improved by 88%**
   
 + #### Texture Map
 
@@ -60,7 +60,7 @@ If you want to build your own projects using same settings as mine, you can refe
   
   ![baking](https://user-images.githubusercontent.com/37015336/194731497-8948378d-f5fe-47a3-87f8-c39a76814285.jpg)
   
-  Get the baked tecture maps, and we can load it using three.js
+  Get the baked texture maps, and we can load it using three.js
   
 + #### Export
 
