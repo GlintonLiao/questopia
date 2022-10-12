@@ -21,19 +21,19 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
     <div class="container">
       <div class="layout-grid">
 
-        <a href="./Pendulum Parking.html" class="card" target="_blank">
+        <a class="card">
           <div class="svg" style="background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);">
             <img src="/svgs/kingofbots.svg" class="icon" alt="" />
           </div>
           <div class="description">
             <h3>King of Bots</h3>
-            <p>Maximize the value of idle parking space</p>
+            <p>An AI battle platform for many kinds of games</p>
           </div>
         </a>
 
         <a href="https://github.com/GlintonLiao/questopia" class="card" target="_blank">
           <div class="svg" style="background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);">
-            <img src="/svgs/kingofbots.svg" class="icon" alt="" />
+            <img src="/svgs/questopia.svg" class="icon" alt="" />
           </div>
           <div class="description">
             <h3>Questopia</h3>
@@ -42,8 +42,8 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
         </a>
 
         <a href="https://github.com/GlintonLiao/galaxy-generator" class="card" target="_blank">
-          <div class="svg">
-            <img src="/svgs/kingofbots.svg" class="icon" alt="" />
+          <div class="svg" style="background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);">
+            <img src="/svgs/kingofbots.svg" class="icon" alt=""/>
           </div>
           <div class="description">
             <h3>Galaxy Generator</h3>
@@ -52,8 +52,8 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
         </a>
 
         <a href="https://www.titongpaolu.run/" class="card" target="_blank">
-          <div class="svg">
-            <img src="/svgs/kingofbots.svg" class="icon" alt="" />
+          <div class="svg" style="background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);">
+            <img src="/svgs/titong.svg" class="icon" alt="" />
           </div>
           <div class="description">
             <h3>Titongpaolu</h3>
@@ -61,42 +61,22 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
           </div>
         </a>
 
-        <a href="./Pendulum Parking.html" class="card" target="_blank">
-          <div class="svg">
+        <a class="card" target="_blank">
+          <div class="svg" style="background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);">
             <img src="/svgs/kingofbots.svg" class="icon" alt="" />
           </div>
           <div class="description">
-            <h3>Pendulum Parking</h3>
-            <p>Maximize the value of idle parking space</p>
+            <h3>[Key: Board]</h3>
+            <p>iOS keyboard focus on code editing</p>
           </div>
         </a>
 
-        <a href="./Pendulum Parking.html" class="card" target="_blank">
-          <div class="svg">
+        <a class="card" target="_blank">
+          <div class="svg" style="background-image: linear-gradient(to right, #74ebd5 0%, #9face6 100%);">
             <img src="/svgs/kingofbots.svg" class="icon" alt="" />
           </div>
           <div class="description">
-            <h3>Pendulum Parking</h3>
-            <p>Maximize the value of idle parking space</p>
-          </div>
-        </a>
-
-        <a href="./Pendulum Parking.html" class="card" target="_blank">
-          <div class="svg">
-            <img src="/svgs/kingofbots.svg" class="icon" alt="" />
-          </div>
-          <div class="description">
-            <h3>Pendulum Parking</h3>
-            <p>Maximize the value of idle parking space</p>
-          </div>
-        </a>
-
-        <a href="./Pendulum Parking.html" class="card" target="_blank">
-          <div class="svg">
-            <img src="/svgs/kingofbots.svg" class="icon" alt="" />
-          </div>
-          <div class="description">
-            <h3>Pendulum Parking</h3>
+            <h3>Memory Game</h3>
             <p>Maximize the value of idle parking space</p>
           </div>
         </a>
