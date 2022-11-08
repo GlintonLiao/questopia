@@ -82,8 +82,8 @@ export default class Baked {
                 uLightShelfColor: { value: new THREE.Color(this.colors.Shelf) },
                 uLightShelfStrength: { value: 1.0 },
             },
-            vertexShader: glsl`${vertexShader}`,
-            fragmentShader: glsl`${fragmentShader}`,
+            vertexShader: vertexShader,
+            fragmentShader: fragmentShader,
         })
 
         this.room.model.traverse((_child) => {
