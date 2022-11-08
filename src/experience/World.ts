@@ -117,7 +117,7 @@ export default class World {
     update(): void {
         if (this.chair) this.chair.update()
         if (this.coffeeSteam) this.coffeeSteam.update()
-        if (this.bigScreen) this.bigScreen.update()
+        // if (this.bigScreen) this.bigScreen.update()
         if (this.raycaster) this.raycaster.update()
     }
 

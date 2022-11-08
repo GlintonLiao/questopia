@@ -21,23 +21,35 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
     <div class="container">
       <div class="layout-grid">
 
-        <a class="card">
-          <div class="svg" style="background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);">
-            <img src="/svgs/kingofbots.svg" class="icon" alt="" />
-          </div>
+        <a href="https://github.com/GlintonLiao/king-of-bots" class="card" target="_blank">
+          <img src="/imgs/Cover-KOB.jpg" class="img" alt="" />
           <div class="description">
             <h3>King of Bots</h3>
-            <p>An AI battle platform for many kinds of games</p>
+            <p>Ai battle platform supporting PvE and PvP</p>
           </div>
         </a>
 
         <a href="https://github.com/GlintonLiao/questopia" class="card" target="_blank">
-          <div class="svg" style="background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);">
-            <img src="/svgs/questopia.svg" class="icon" alt="" />
-          </div>
+          <img src="/imgs/Cover-Questopia.jpg" class="img" alt="" />
           <div class="description">
             <h3>Questopia</h3>
             <p>3D room · Personal website · Online portfolio</p>
+          </div>
+        </a>
+
+        <a href="https://github.com/vueuse/vue-chemistry" class="card" target="_blank">
+          <img src="/imgs/vue-chemistry.jpg" class="img" alt="" />
+          <div class="description">
+            <h3>Vue Chemistry</h3>
+            <p>Reactified JavaScript functions for Vue</p>
+          </div>
+        </a>
+
+        <a href="https://github.com/GlintonLiao/threejs-template-typescript" class="card" target="_blank">
+          <img src="/imgs/cover-vithree.jpg" class="img" alt="" />
+          <div class="description">
+            <h3>Vithree</h3>
+            <p>Three.js starting template based on TS and Vite</p>
           </div>
         </a>
 
