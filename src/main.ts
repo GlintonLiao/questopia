@@ -53,43 +53,35 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
           </div>
         </a>
 
-        <a href="https://github.com/GlintonLiao/galaxy-generator" class="card" target="_blank">
-          <div class="svg" style="background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);">
-            <img src="/svgs/kingofbots.svg" class="icon" alt=""/>
-          </div>
+        <a href="https://reactive-numbers-converter.netlify.app" class="card" target="_blank">
+          <img src="/imgs/cover-Reactive.jpg" class="img" alt="" />
           <div class="description">
-            <h3>Galaxy Generator</h3>
-            <p>Play with the galaxy by yourself</p>
+            <h3>Reactive Numbers Converter</h3>
+            <p>All in one with fully reactivity</p>
           </div>
         </a>
 
         <a href="https://www.titongpaolu.run/" class="card" target="_blank">
-          <div class="svg" style="background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);">
-            <img src="/svgs/titong.svg" class="icon" alt="" />
-          </div>
+          <img src="/imgs/cover-Titong.jpg" class="img" alt="" />
           <div class="description">
             <h3>Titongpaolu</h3>
             <p>An informative website for the architectural industry</p>
           </div>
         </a>
 
-        <a class="card" target="_blank">
-          <div class="svg" style="background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);">
-            <img src="/svgs/kingofbots.svg" class="icon" alt="" />
-          </div>
+        <a href="https://www.npmjs.com/package/pkg-desc" class="card" target="_blank">
+          <img src="/imgs/cover-Pkg.jpg" class="img" alt="" />
           <div class="description">
-            <h3>[Key: Board]</h3>
-            <p>iOS keyboard focus on code editing</p>
+            <h3>Pkg-Desc</h3>
+            <p>List details of all dependencies packages</p>
           </div>
         </a>
 
-        <a class="card" target="_blank">
-          <div class="svg" style="background-image: linear-gradient(to right, #74ebd5 0%, #9face6 100%);">
-            <img src="/svgs/kingofbots.svg" class="icon" alt="" />
-          </div>
+        <a href="https://github.com/GlintonLiao/layout-visualizer" class="card" target="_blank">
+          <img src="/imgs/cover-Layout.jpg" class="img" alt="" />
           <div class="description">
-            <h3>Memory Game</h3>
-            <p>Maximize the value of idle parking space</p>
+            <h3>Layout Visualizer</h3>
+            <p>The console.log() for the CSS</p>
           </div>
         </a>
         
