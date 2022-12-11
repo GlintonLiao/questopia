@@ -54,7 +54,7 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
         </a>
 
         <a href="https://reactive-numbers-converter.netlify.app" class="card" target="_blank">
-          <img src="/imgs/cover-Reactive.jpg" class="img" alt="" />
+          <img src="/imgs/Cover-Reactive.jpg" class="img" alt="" />
           <div class="description">
             <h3>Reactive Numbers Converter</h3>
             <p>All in one with fully reactivity</p>
@@ -62,7 +62,7 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
         </a>
 
         <a href="https://www.titongpaolu.run/" class="card" target="_blank">
-          <img src="/imgs/cover-Titong.jpg" class="img" alt="" />
+          <img src="/imgs/Cover-Titong.jpg" class="img" alt="" />
           <div class="description">
             <h3>Titongpaolu</h3>
             <p>An informative website for the architectural industry</p>
@@ -70,7 +70,7 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
         </a>
 
         <a href="https://www.npmjs.com/package/pkg-desc" class="card" target="_blank">
-          <img src="/imgs/cover-Pkg.jpg" class="img" alt="" />
+          <img src="/imgs/Cover-Pkg.jpg" class="img" alt="" />
           <div class="description">
             <h3>Pkg-Desc</h3>
             <p>List details of all dependencies packages</p>
@@ -78,7 +78,7 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
         </a>
 
         <a href="https://github.com/GlintonLiao/layout-visualizer" class="card" target="_blank">
-          <img src="/imgs/cover-Layout.jpg" class="img" alt="" />
+          <img src="/imgs/Cover-Layout.jpg" class="img" alt="" />
           <div class="description">
             <h3>Layout Visualizer</h3>
             <p>The console.log() for the CSS</p>
