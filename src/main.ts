@@ -29,11 +29,11 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
           </div>
         </a>
 
-        <a href="https://github.com/GlintonLiao/questopia" class="card" target="_blank">
-          <img src="/imgs/Cover-Questopia.jpg" class="img" alt="" />
+        <a href="https://github.com/GlintonLiao/Key-Board" class="card" target="_blank">
+          <img src="/imgs/Cover-Keyboard.jpg" class="img" alt="" />
           <div class="description">
-            <h3>Questopia</h3>
-            <p>3D room · Personal website · Online portfolio</p>
+            <h3>[Key: Board]</h3>
+            <p>An iOS keyboard for code editing</p>
           </div>
         </a>
 
@@ -44,12 +44,28 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
             <p>Reactified JavaScript functions for Vue</p>
           </div>
         </a>
-
+        
         <a href="https://github.com/GlintonLiao/threejs-template-typescript" class="card" target="_blank">
           <img src="/imgs/cover-vithree.jpg" class="img" alt="" />
           <div class="description">
             <h3>Vithree</h3>
             <p>Three.js starting template based on TS and Vite</p>
+          </div>
+        </a>
+        
+        <a href="https://github.com/GlintonLiao/questopia" class="card" target="_blank">
+          <img src="/imgs/Cover-Questopia.jpg" class="img" alt="" />
+          <div class="description">
+            <h3>Questopia</h3>
+            <p>3D room · Personal website · Online portfolio</p>
+          </div>
+        </a>
+
+        <a href="https://www.npmjs.com/package/pkg-desc" class="card" target="_blank">
+          <img src="/imgs/Cover-Pkg.jpg" class="img" alt="" />
+          <div class="description">
+            <h3>Pkg-Desc</h3>
+            <p>List details of all dependencies packages</p>
           </div>
         </a>
 
@@ -69,19 +85,19 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
           </div>
         </a>
 
-        <a href="https://www.npmjs.com/package/pkg-desc" class="card" target="_blank">
-          <img src="/imgs/Cover-Pkg.jpg" class="img" alt="" />
-          <div class="description">
-            <h3>Pkg-Desc</h3>
-            <p>List details of all dependencies packages</p>
-          </div>
-        </a>
-
-        <a href="https://github.com/GlintonLiao/layout-visualizer" class="card" target="_blank">
+        <a href="https://chrome.google.com/webstore/detail/layout-visualizer/damlicfebbfedlipdokpehkmkpbhgpfi" class="card" target="_blank">
           <img src="/imgs/Cover-Layout.jpg" class="img" alt="" />
           <div class="description">
             <h3>Layout Visualizer</h3>
             <p>The console.log() for the CSS</p>
+          </div>
+        </a>
+
+        <a href="https://www.hyperui.dev/components/application-ui/toggles" class="card" target="_blank">
+          <img src="/imgs/Cover-Hyper.jpg" class="img" alt="" />
+          <div class="description">
+            <h3>Hyper UI</h3>
+            <p>Free Open Source Tailwind CSS Components</p>
           </div>
         </a>
         
