@@ -94,7 +94,7 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
         </a>
 
         <a href="https://www.hyperui.dev/components/application-ui/toggles" class="card" target="_blank">
-          <img src="/imgs/Cover-Hyper.jpg" class="img" alt="" />
+          <img src="/imgs/Cover-hyper.jpg" class="img" alt="" />
           <div class="description">
             <h3>Hyper UI</h3>
             <p>Free Open Source Tailwind CSS Components</p>
