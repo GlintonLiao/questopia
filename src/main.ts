@@ -48,7 +48,7 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
         <a href="https://github.com/GlintonLiao/threejs-template-typescript" class="card" target="_blank">
           <img src="/imgs/cover-vithree.jpg" class="img" alt="" />
           <div class="description">
-            <h3>Vithree</h3>
+            <h3>Three.js Starting Template</h3>
             <p>Three.js starting template based on TS and Vite</p>
           </div>
         </a>
