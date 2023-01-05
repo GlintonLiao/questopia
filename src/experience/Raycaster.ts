@@ -86,16 +86,14 @@ export default class Raycaster {
           for (let obj of this.objs) {
             obj.material.color.set("#66ccff")
           }
+          setTimeout(() => {
+              this.hoverPages[0].element.classList.remove("visible")
+              this.hoverPages[1].element.classList.remove("visible")
+              for (let obj of this.objs) {
+                obj.material.color.set("#ffffff")
+              }
+          }, 1200)
         }, 5000)
-
-        setTimeout(() => {
-            this.hoverPages[0].element.classList.remove("visible")
-            this.hoverPages[1].element.classList.remove("visible")
-            for (let obj of this.objs) {
-              obj.material.color.set("#ffffff")
-            }
-        }, 6000)
-
     }
 
     update(): void {
