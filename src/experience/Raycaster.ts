@@ -41,15 +41,14 @@ export default class Raycaster {
 
         this.hoverPages = [
             {
-                position: new THREE.Vector3(-1, 0.8, 0.3),
+                position: new THREE.Vector3(-1.1, 0.8, 0.3),
                 element: document.querySelector(".programming"),
             },
             {
-                position: new THREE.Vector3(-0.6, 1, 0),
+                position: new THREE.Vector3(-0.4, 1.2, 0),
                 element: document.querySelector(".architecture"),
             },
         ]
-
         this.setCaster()
     }
 
@@ -73,6 +72,30 @@ export default class Raycaster {
                 this.images.show()
             }
         })
+
+        setTimeout(() => {
+          for (let page of this.hoverPages) {
+            const screenPosition = page.position.clone().project(this.experience.camera.instance)
+            page.element.classList.add("visible")
+            const translateX =
+                screenPosition.x * this.experience.sizes.width * 0.5
+            const translateY =
+                -screenPosition.y * this.experience.sizes.height * 0.5
+            page.element.style.transform = `translateX(${translateX}px) translateY(${translateY}px)`
+          }
+          for (let obj of this.objs) {
+            obj.material.color.set("#66ccff")
+          }
+        }, 5000)
+
+        setTimeout(() => {
+            this.hoverPages[0].element.classList.remove("visible")
+            this.hoverPages[1].element.classList.remove("visible")
+            for (let obj of this.objs) {
+              obj.material.color.set("#ffffff")
+            }
+        }, 6000)
+
     }
 
     update(): void {

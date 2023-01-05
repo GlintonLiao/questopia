@@ -124,6 +124,7 @@ footer span {
     top: 50%;
     left: 50%;
     opacity: 0;
+    visibility: hidden;
     padding: 1rem;
     display: flex;
     flex-direction: column;
@@ -131,13 +132,14 @@ footer span {
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 1rem;
-    transition: opacity 0.5s;
+    transition: opacity 0.5s, visibility 0.5s;
+    z-index: 9;
 }
 
 .programming.visible,
 .architecture.visible {
     opacity: 1;
-    z-index: 8;
+    visibility: visible;
 }
 
 .text {
@@ -152,11 +154,13 @@ footer span {
 .prev-projects {
     position: absolute;
     opacity: 0;
+    visibility: hidden;
     width: 100vw;
     height: 100vh;
     overflow: scroll;
     background-color: rgba(0, 0, 0, 0.6);
     transition: all 0.3s;
+    z-index: 999;
 }
 
 .header {
@@ -183,7 +187,7 @@ footer span {
 .projects.visible,
 .prev-projects.visible {
     opacity: 1;
-    z-index: 999;
+    visibility: visible;
     backdrop-filter: blur(15px);
     transition: all 0.3s;
 }
@@ -192,7 +196,8 @@ footer span {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto auto auto auto;
-    justify-items: stretch;
+    justify-items: center;
+    justify-content: center;
     -webkit-box-align: stretch;
     -webkit-align-items: stretch;
     -ms-flex-align: stretch;

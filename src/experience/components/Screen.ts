@@ -64,6 +64,8 @@ export default class Screen extends THREE.EventDispatcher {
             closeBtn.removeEventListener("click", handle)
         }
         closeBtn.addEventListener("click", handle)
+        const hover = document.querySelector(".programming")
+        hover.classList.remove("visible")
     }
 
     update() {}
