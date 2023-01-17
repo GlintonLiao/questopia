@@ -80,7 +80,7 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
         <a href="https://www.titongpaolu.run/" class="card" target="_blank">
           <img src="/imgs/Cover-Titong.jpg" class="img" alt="" />
           <div class="description">
-            <h3>Titongpaolu</h3>
+            <h3>Archibucket</h3>
             <p>An informative website for the architectural industry</p>
           </div>
         </a>
