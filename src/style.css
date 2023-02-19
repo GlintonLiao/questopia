@@ -299,12 +299,10 @@ button {
 }
 
 .info {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    text-align: right;
+    text-align: center;
     background-color: rgba(256, 256, 256, 0.1);
     padding: 10px;
+    width: 100%;
     border-radius: 5px;
     user-select: none;
 }
@@ -320,11 +318,23 @@ button {
     user-select: none;
 }
 
+.info-wrapper {
+    display: flex;
+    position: fixed;
+    width: 8rem;
+    bottom: 20px;
+    right: 20px;
+    flex-direction: column;
+    gap: 0.7rem;
+    align-items: center;
+    justify-content: stretch;
+}
+
 .info:hover {
     background-color: rgba(256, 256, 256, 0.3);
 }
 
-.info>a {
+.info > a {
     color: white;
     text-decoration: none;
 }
