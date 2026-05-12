@@ -1,6 +1,7 @@
 import { useRef, useEffect } from 'react'
 import { useThree, useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
+import type { IntroStage } from '../App'
 
 const LIMITS = {
   radius: { min: 2, max: 6.5 },
@@ -15,11 +16,30 @@ const SPHERICAL_SMOOTHING = 0.005
 const TARGET_SMOOTHING = 0.002
 const ZOOM_SENSITIVITY = 0.01
 
+// Default camera pose (the final landing point after intro)
+const DEFAULT_SPHERICAL = new THREE.Spherical(5.5, Math.PI * 0.41, Math.PI * 0.15)
+const DEFAULT_TARGET = new THREE.Vector3(-0.4, 0.4, 0.25)
+
+// Intro start: further away, wider angle, slightly lower
+const INTRO_START_SPHERICAL = new THREE.Spherical(8.8, Math.PI * 0.36, -Math.PI * 0.08)
+const INTRO_START_TARGET = new THREE.Vector3(-0.25, 0.35, 0.2)
+const INTRO_DURATION = 2.8 // seconds
+
 function clamp(value: number, min: number, max: number) {
   return Math.min(Math.max(value, min), max)
 }
 
-export default function CameraRig() {
+// easeOutCubic: fast start, smooth stop
+function easeOutCubic(t: number) {
+  return 1 - Math.pow(1 - t, 3)
+}
+
+interface CameraRigProps {
+  introStage: IntroStage
+  onIntroDone: () => void
+}
+
+export default function CameraRig({ introStage, onIntroDone }: CameraRigProps) {
   const camera = useThree((state) => state.camera)
   const gl = useThree((state) => state.gl)
   const size = useThree((state) => state.size)
@@ -35,10 +55,17 @@ export default function CameraRig() {
   const zoomDelta = useRef(0)
   const isDragging = useRef(false)
 
+  // Intro animation tracking
+  const introElapsed = useRef(0)
+  const introDoneCalled = useRef(false)
+  const introActiveRef = useRef(false)
+  introActiveRef.current = introStage === 'entering'
+
   useEffect(() => {
     const domElement = gl.domElement
 
     const onPointerDown = (e: PointerEvent) => {
+      if (introActiveRef.current) return
       e.preventDefault()
       // Only handle primary button or shift/ctrl
       isDragging.current = true
@@ -49,7 +76,7 @@ export default function CameraRig() {
     }
 
     const onPointerMove = (e: PointerEvent) => {
-      if (!isDragging.current) return
+      if (introActiveRef.current || !isDragging.current) return
       e.preventDefault()
       dragDelta.current.x += e.clientX - dragPrevious.current.x
       dragDelta.current.y += e.clientY - dragPrevious.current.y
@@ -58,21 +85,25 @@ export default function CameraRig() {
     }
 
     const onPointerUp = (e: PointerEvent) => {
+      if (introActiveRef.current) return
       isDragging.current = false
       domElement.releasePointerCapture?.(e.pointerId)
     }
 
     const onWheel = (e: WheelEvent) => {
+      if (introActiveRef.current) return
       e.preventDefault()
       zoomDelta.current += e.deltaY
     }
 
     const onContextMenu = (e: Event) => {
+      if (introActiveRef.current) return
       e.preventDefault()
     }
 
     // Touch
     const onTouchStart = (e: TouchEvent) => {
+      if (introActiveRef.current) return
       e.preventDefault()
       isDragging.current = true
       dragAlternative.current = e.touches.length > 1
@@ -81,7 +112,7 @@ export default function CameraRig() {
     }
 
     const onTouchMove = (e: TouchEvent) => {
-      if (!isDragging.current) return
+      if (introActiveRef.current || !isDragging.current) return
       e.preventDefault()
       dragDelta.current.x += e.touches[0].clientX - dragPrevious.current.x
       dragDelta.current.y += e.touches[0].clientY - dragPrevious.current.y
@@ -90,6 +121,7 @@ export default function CameraRig() {
     }
 
     const onTouchEnd = () => {
+      if (introActiveRef.current) return
       isDragging.current = false
     }
 
@@ -124,6 +156,48 @@ export default function CameraRig() {
     const t = target.current
     const smallestSide = Math.min(size.width, size.height)
 
+    // ── Intro camera path ──
+    if (introStage === 'entering') {
+      introElapsed.current += delta
+      const rawT = Math.min(introElapsed.current / INTRO_DURATION, 1)
+      const et = easeOutCubic(rawT)
+
+      // Interpolate spherical
+      sp.radius = INTRO_START_SPHERICAL.radius + (DEFAULT_SPHERICAL.radius - INTRO_START_SPHERICAL.radius) * et
+      sp.phi = INTRO_START_SPHERICAL.phi + (DEFAULT_SPHERICAL.phi - INTRO_START_SPHERICAL.phi) * et
+      sp.theta = INTRO_START_SPHERICAL.theta + (DEFAULT_SPHERICAL.theta - INTRO_START_SPHERICAL.theta) * et
+
+      // Interpolate target
+      t.lerpVectors(INTRO_START_TARGET, DEFAULT_TARGET, et)
+
+      // Sync smoothed values to avoid post-intro jump
+      const spSm = sphericalSmoothed.current
+      spSm.radius = sp.radius
+      spSm.phi = sp.phi
+      spSm.theta = sp.theta
+
+      const tSm = targetSmoothed.current
+      tSm.copy(t)
+
+      // Apply camera
+      const viewPosition = new THREE.Vector3().setFromSpherical(spSm)
+      viewPosition.add(tSm)
+      camera.position.copy(viewPosition)
+      camera.lookAt(tSm)
+
+      // Clear any accumulated input
+      dragDelta.current.x = 0
+      dragDelta.current.y = 0
+      zoomDelta.current = 0
+
+      if (rawT >= 1 && !introDoneCalled.current) {
+        introDoneCalled.current = true
+        onIntroDone()
+      }
+      return
+    }
+
+    // ── Normal interaction ──
     // Zoom
     if (zoomDelta.current !== 0) {
       sp.radius += zoomDelta.current * ZOOM_SENSITIVITY
