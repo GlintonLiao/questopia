@@ -12,11 +12,14 @@ import CameraRig from './CameraRig'
 import InteractiveObjects from './InteractiveObjects'
 import HoverLabels from './HoverLabels'
 import InteractionRaycaster from './InteractionRaycaster'
+import type { IntroStage } from '../App'
 
 interface ExperienceProps {
   onOpenOverlay: (kind: 'current' | 'previous') => void
   onProgress: (progress: number) => void
   onReady: () => void
+  introStage: IntroStage
+  onIntroDone: () => void
 }
 
 function ProgressTracker({ onProgress, onReady }: { onProgress: (p: number) => void; onReady: () => void }) {
@@ -37,7 +40,7 @@ function ProgressTracker({ onProgress, onReady }: { onProgress: (p: number) => v
   return null
 }
 
-export default function Experience({ onOpenOverlay, onProgress, onReady }: ExperienceProps) {
+export default function Experience({ onOpenOverlay, onProgress, onReady, introStage, onIntroDone }: ExperienceProps) {
   const dpr =
     typeof window !== 'undefined'
       ? Math.min(Math.max(window.devicePixelRatio, 1), window.innerWidth < 768 ? 1.5 : 2)
@@ -54,7 +57,7 @@ export default function Experience({ onOpenOverlay, onProgress, onReady }: Exper
       frameloop="always"
     >
       <ProgressTracker onProgress={onProgress} onReady={onReady} />
-      <CameraRig />
+      <CameraRig introStage={introStage} onIntroDone={onIntroDone} />
       <Room />
       <Title />
       <ArchiModels />

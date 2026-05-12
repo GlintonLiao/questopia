@@ -4,6 +4,7 @@ import Overlay from './components/Overlay'
 import LoadingScreen from './components/LoadingScreen'
 
 type OverlayKind = 'none' | 'current' | 'previous'
+export type IntroStage = 'loading' | 'ready' | 'entering' | 'done'
 
 declare global {
   interface Window {
@@ -15,7 +16,7 @@ declare global {
 export default function App() {
   const [overlayOpen, setOverlayOpen] = useState<OverlayKind>('none')
   const [progress, setProgress] = useState(0)
-  const [ready, setReady] = useState(false)
+  const [introStage, setIntroStage] = useState<IntroStage>('loading')
 
   const handleOpenOverlay = useCallback((kind: OverlayKind) => {
     window.__questopiaOverlayOpen = kind
@@ -32,7 +33,15 @@ export default function App() {
   }, [])
 
   const handleReady = useCallback(() => {
-    setReady(true)
+    setIntroStage('ready')
+  }, [])
+
+  const handleEnter = useCallback(() => {
+    setIntroStage('entering')
+  }, [])
+
+  const handleIntroDone = useCallback(() => {
+    setIntroStage('done')
   }, [])
 
   useEffect(() => {
@@ -67,18 +76,20 @@ export default function App() {
           onOpenOverlay={handleOpenOverlay}
           onProgress={handleProgress}
           onReady={handleReady}
+          introStage={introStage}
+          onIntroDone={handleIntroDone}
         />
       </Suspense>
-      <LoadingScreen progress={progress} ready={ready} />
+      <LoadingScreen progress={progress} stage={introStage} onEnter={handleEnter} />
       <Overlay kind={overlayOpen} onClose={handleCloseOverlay} />
 
-      <div className="control">
+      <div className={`control ${introStage !== 'done' ? 'intro-hidden' : ''}`}>
         <p><strong>Drag</strong>: rotate</p>
         <p><strong>Shift</strong>: move</p>
         <p><strong>Wheel</strong>: zoom</p>
       </div>
 
-      <div className="info-wrapper">
+      <div className={`info-wrapper ${introStage !== 'done' ? 'intro-hidden' : ''}`}>
         <div className="info">
           <a target="_blank" href="https://github.com/GlintonLiao/questopia" rel="noopener noreferrer">
             Github
